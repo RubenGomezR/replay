@@ -52,7 +52,7 @@ public class HomeController {
 		modelo.addAttribute("anuncios", sa.findAllAnunciosAjenos()); 
 		//no mostramos los anuncios del usuario cnoectado
 		
-		return "/usuAdmin/pagina";
+		return "usuAdmin/pagina";
 	}
 	
 }

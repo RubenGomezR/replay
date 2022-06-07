@@ -91,7 +91,7 @@ public class AnuncioController {
 	public String seleccionar(@RequestParam int idProductos, Model modelo) {
 		modelo.addAttribute("anuncio", sa.findById(idProductos));
 		modelo.addAttribute("comentarios", sco.getByIdAnuncio(idProductos));
-		return "/usuAnonimo/seleccion";
+		return "usuAnonimo/seleccion";
 		}
 	
 	/*buscar usuAnonimo*/
@@ -99,7 +99,7 @@ public class AnuncioController {
 	public String buscar2(@RequestParam String query, Model modelo) {
 		modelo.addAttribute("anuncios", sa.findByAnuncio(query));
 		modelo.addAttribute("usuarios", su.findByNombre(query));
-		return "/usuAnonimo/buscar2";
+		return "usuAnonimo/buscar2";
 		}
 	
 	
@@ -109,25 +109,25 @@ public class AnuncioController {
 	@RequestMapping("/Videojuegos")
 	public String buscarCategoriaV(Model modelo) {
 		modelo.addAttribute("anuncios", sa.findByCategoria(CategoryEnum.VIDEOJUEGOS.getcategoria()));
-		return "/usuAnonimo/paginaCategoriaEspc";
+		return "usuAnonimo/paginaCategoriaEspc";
 		}
 	
 	@RequestMapping("/Consolas")
 	public String buscarCategoriaC(Model modelo) {
 		modelo.addAttribute("anuncios", sa.findByCategoria(CategoryEnum.CONSOLAS.getcategoria()));
-		return "/usuAnonimo/paginaCategoriaEspc";
+		return "usuAnonimo/paginaCategoriaEspc";
 		}
 	
 	@RequestMapping("/PC_Gaming")
 	public String buscarCategoriaP(Model modelo) {
 		modelo.addAttribute("anuncios", sa.findByCategoria(CategoryEnum.PC_GAMING.getcategoria()));
-		return "/usuAnonimo/paginaCategoriaEspc";
+		return "usuAnonimo/paginaCategoriaEspc";
 		}
 	
 	@RequestMapping("/Accesorios")
 	public String buscarCategoriaA(Model modelo) {
 		modelo.addAttribute("anuncios", sa.findByCategoria(CategoryEnum.ACCESORIOS.getcategoria()));
-		return "/usuAnonimo/paginaCategoriaEspc";
+		return "usuAnonimo/paginaCategoriaEspc";
 		}
 	
 	/*USUREGISTRADO*/
@@ -138,7 +138,7 @@ public class AnuncioController {
 		modelo.addAttribute("anuncio", sa.findById(idProductos));
 		modelo.addAttribute("comentarios", sco.getByIdAnuncio(idProductos));
 		modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
-		return "/usuRegistrado/seleccion";
+		return "usuRegistrado/seleccion";
 		}
 	
 	/*buscar usuRegistrado*/
@@ -148,7 +148,7 @@ public class AnuncioController {
 		modelo.addAttribute("anuncios", sa.findByAnuncio(query));
 		modelo.addAttribute("usuarios", su.findByNombre(query));
 		modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
-		return "/usuRegistrado/buscar2";
+		return "usuRegistrado/buscar2";
 		}
 	
 	
@@ -160,7 +160,7 @@ public class AnuncioController {
 	public String buscarCategoriaVR(Model modelo) {
 		modelo.addAttribute("anuncios", sa.findByCategoria(CategoryEnum.VIDEOJUEGOS.getcategoria()));
 		modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
-		return "/usuRegistrado/paginaCategoriaEspc";
+		return "usuRegistrado/paginaCategoriaEspc";
 		}
 	
 	@RequestMapping("/ConsolasR")
@@ -168,7 +168,7 @@ public class AnuncioController {
 	public String buscarCategoriaCR(Model modelo) {
 		modelo.addAttribute("anuncios", sa.findByCategoria(CategoryEnum.CONSOLAS.getcategoria()));
 		modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
-		return "/usuRegistrado/paginaCategoriaEspc";
+		return "usuRegistrado/paginaCategoriaEspc";
 		}
 	
 	@RequestMapping("/PC GamingR")
@@ -176,7 +176,7 @@ public class AnuncioController {
 	public String buscarCategoriaPR(Model modelo) {
 		modelo.addAttribute("anuncios", sa.findByCategoria(CategoryEnum.PC_GAMING.getcategoria()));
 		modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
-		return "/usuRegistrado/paginaCategoriaEspc";
+		return "usuRegistrado/paginaCategoriaEspc";
 		}
 	
 	@RequestMapping("/AccesoriosR")
@@ -184,7 +184,7 @@ public class AnuncioController {
 	public String buscarCategoriaAR(Model modelo) {
 		modelo.addAttribute("anuncios", sa.findByCategoria(CategoryEnum.ACCESORIOS.getcategoria()));
 		modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
-		return "/usuRegistrado/paginaCategoriaEspc";
+		return "usuRegistrado/paginaCategoriaEspc";
 		}
 	
 	//INSERTAR anuncio usuarioRegistrado
@@ -193,7 +193,7 @@ public class AnuncioController {
 	public String insertaR(Model modelo) {
 		modelo.addAttribute("anuncio", new AnuncioVO());
 		
-		return "/usuRegistrado/formInserta";
+		return "usuRegistrado/formInserta";
 	}
 	
 	//MODIFICAR anuncio usuarioRegistrado
@@ -201,7 +201,7 @@ public class AnuncioController {
 	@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
 	public String modificarP(@RequestParam int idProductos, Model modelo) {
 		modelo.addAttribute("anuncio", sa.findById(idProductos));
-		return "/usuRegistrado/formModificar";
+		return "usuRegistrado/formModificar";
 	}
 	
 	@RequestMapping("/persistirR")
@@ -233,7 +233,7 @@ public class AnuncioController {
 	public String paginaLikesR(Model modelo) {
 		modelo.addAttribute("anuncios", sa.findAllLikesR());
 		modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
-		return "/usuRegistrado/paginaLikesR";
+		return "usuRegistrado/paginaLikesR";
 	}
 	
 	

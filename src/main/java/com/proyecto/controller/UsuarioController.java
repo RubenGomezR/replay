@@ -34,14 +34,14 @@ public class UsuarioController {
 	public String mostrar(Model modelo) {
 		modelo.addAttribute("usuarios", su.findAll());
 		
-		return "/usuarios/mostrar";
+		return "usuarios/mostrar";
 	}
 	
 	@RequestMapping("/inserta")
 	public String inserta(Model modelo) {
 		modelo.addAttribute("usuario", new UsuarioVO());
 		
-		return "/usuarios/registro"; //formInserta o indexY
+		return "usuarios/registro"; //formInserta o indexY
 	}
 	
 	
@@ -62,19 +62,19 @@ public class UsuarioController {
 	@RequestMapping("/modificar")
 	public String modificar(@RequestParam int idUsuarios, Model modelo) {
 		modelo.addAttribute("usuario", su.findById(idUsuarios).get());
-		return "/usuarios/formModificar";
+		return "usuarios/formModificar";
 	}
 	
 	@RequestMapping("/seleccionar")
 	public String seleccionar(@RequestParam int idUsuarios, Model modelo) {
 		modelo.addAttribute("usuario", su.findById(idUsuarios).get());
-		return "/usuarios/seleccion";
+		return "usuarios/seleccion";
 	}
 	
 	@RequestMapping("/login")
 	public String login(Model modelo) {
 		modelo.addAttribute("usuario", new UsuarioVO());
-		return "/usuarios/login";
+		return "usuarios/login";
 	}
 	
 	@RequestMapping("/accede")
@@ -100,19 +100,19 @@ public class UsuarioController {
 	public String perfilUsu(Model modelo) {
 		modelo.addAttribute("anuncios", sa.findByUsuario());
 		modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
-		return "/usuRegistrado/perfil";
+		return "usuRegistrado/perfil";
 	}
 	
 	//Modificar datos usuario Registrado
 	@RequestMapping("/modificarR")
 	public String modificarR(@RequestParam int idUsuarios, Model modelo) {
 		modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
-		return "/usuRegistrado/formModificar";
+		return "usuRegistrado/formModificar";
 	}
 	
 	@RequestMapping("/persistirR")
 	public String persistirR (@ModelAttribute UsuarioVO usuario) {
 		su.save(usuario);
-		return "/usuRegistrado/perfil";
+		return "usuRegistrado/perfil";
 	}
 }

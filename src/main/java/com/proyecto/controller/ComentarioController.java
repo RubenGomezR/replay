@@ -24,14 +24,14 @@ public class ComentarioController {
 	public String mostrar(Model modelo) {
 		modelo.addAttribute("comentarios", sco.findAll());
 		
-		return "/comentarios/mostrar";
+		return "comentarios/mostrar";
 	}
 	
 	@RequestMapping("/inserta")
 	public String inserta(Model modelo) {
 		modelo.addAttribute("comentario", new ComentarioVO());
 		
-		return "/comentarios/formInserta";
+		return "comentarios/formInserta";
 	}
 	
 	
@@ -52,7 +52,7 @@ public class ComentarioController {
 	@RequestMapping("/modificar")
 	public String modificar(@RequestParam int idComentarios, Model modelo) {
 		modelo.addAttribute("comentario", sco.findById(idComentarios).get());
-		return "/comentarios/formModificar";
+		return "comentarios/formModificar";
 	}
 	
 //INSERTAR anuncio usuarioRegistrado
