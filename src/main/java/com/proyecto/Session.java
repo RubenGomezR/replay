@@ -5,10 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-/**
- * Clase para manejar las sesiones en la aplicación.
- *
- * @author Jose
+/*Clase para manejar las sesiones en la aplicación.
  */
 @Component
 public class Session {
@@ -22,14 +19,14 @@ public class Session {
     @Autowired
     private HttpServletRequest httpRequestServlet;
     
-    /**
-     * Tiempo máximo de inactividad en la session en segundos
-     */
+   
+     //Tiempo máximo de inactividad en la session en segundos
+     
     private int maxInactiveInterval;
 
-    /**
-     * Contructor.
-     */
+    
+     // Contructor.
+     
     public Session() {
         maxInactiveInterval = 3600;
     }
@@ -42,11 +39,11 @@ public class Session {
         this.maxInactiveInterval = maxInactiveInterval;
     }
 
-    /**
-     * Función para guardar un objeto en el mapa de la sesion
-     *
-     * @param key | Clave del objeto en el mapa de la sesión.
-     * @param value | Objeto a guardar en el el mapa de la sesion.
+    /*
+      Función para guardar un objeto en el mapa de la sesion
+     
+      @param key | Clave del objeto en el mapa de la sesión.
+      @param value | Objeto a guardar en el el mapa de la sesion.
      */
     public void add(String key, Object value) {
         HttpSession session = (HttpSession) httpRequestServlet.getSession(true);
@@ -54,29 +51,29 @@ public class Session {
     }
 
    
-    /**
-     * Función que devuelve un objeto del mapa de la sesión pasando una clave
-     * por parametros.
-     *
-     * @param key | Clave del objeto a devolver.
-     * @return Object | Objeto almacenado en el mapa de la sesión.
+    /*
+      Función que devuelve un objeto del mapa de la sesión pasando una clave
+      por parametros.
+    
+      @param key | Clave del objeto a devolver.
+      @return Object | Objeto almacenado en el mapa de la sesión.
      */
     public Object get(String key) {
         HttpSession session = (HttpSession) httpRequestServlet.getSession(true);
         return session.getAttribute(key);
     }
 
-    /**
-     * Guarda en session el atributo que confirma que el usuario está logueado.
+    /*
+      Guarda en session el atributo que confirma que el usuario está logueado.
      */
     public void login() {
         add(IS_LOGGED, true);
     }
 
-    /**
-     * Comprueba si el usuario esta logueado o no.
-     *
-     * @return Boolean | True si esta logueado y False si no esta logueado.
+    /*
+      Comprueba si el usuario esta logueado o no.
+     
+      @return Boolean | True si esta logueado y False si no esta logueado.
      */
     public boolean isLogged() {
     	Object isLogged = get(IS_LOGGED);
@@ -86,10 +83,10 @@ public class Session {
         return Boolean.valueOf(String.valueOf(get(IS_LOGGED)));
     }
     
-    /**
-     * Devuelve el id del usuario que esta loggeado
-     *
-     * @return Integer | Id del usuario logueado. -1 Si el usuario no esta logueado.
+    /*
+      Devuelve el id del usuario que esta loggeado
+     
+      @return Integer | Id del usuario logueado. -1 Si el usuario no esta logueado.
      */
     public Integer getUserLoggedId() {
     	Object isLogged = get(IS_LOGGED);
@@ -99,8 +96,8 @@ public class Session {
         return (Integer) get(Session.ID_USER);
     }
 
-    /**
-     * Destruye el objeto HttpSession.
+    /*
+      Destruye el objeto HttpSession.
      */
     public void logout() {
         HttpSession session = (HttpSession) httpRequestServlet.getSession(true);
