@@ -33,7 +33,7 @@ public class HomeController {
 	public String mostrar(Model modelo) {
 		modelo.addAttribute("anuncios", sa.findAll());
 		
-		return "/usuAnonimo/pagina";
+		return "usuAnonimo/pagina";
 	}
 	
 	@RequestMapping("/R")
@@ -43,7 +43,7 @@ public class HomeController {
 		modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
 		//no mostramos los anuncios del usuario cnoectado
 		
-		return "/usuRegistrado/pagina";
+		return "usuRegistrado/pagina";
 	}
 	
 	@RequestMapping("/A")

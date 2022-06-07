@@ -49,7 +49,7 @@ public class AnuncioController {
 	public String mostrar(Model modelo) {
 		modelo.addAttribute("anuncios", sa.findAll());
 		
-		return "/anuncios/mostrar";
+		return "anuncios/mostrar";
 	}
 	
 	
@@ -58,7 +58,7 @@ public class AnuncioController {
 	public String inserta(Model modelo) {
 		modelo.addAttribute("anuncio", new AnuncioVO());
 		
-		return "/anuncios/formInserta";
+		return "anuncios/formInserta";
 	}
 	
 	
@@ -80,7 +80,7 @@ public class AnuncioController {
 	@RequestMapping("/modificar")
 	public String modificar(@RequestParam int idProductos, Model modelo) {
 		modelo.addAttribute("anuncio", sa.findById(idProductos));
-		return "/anuncios/formModificar";
+		return "anuncios/formModificar";
 	}
 	
 	
