@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1>CRUD Comentarios</h1>
+
+	<table>
+		<tr>
+			<th>Fecha</th>
+			<th>Texto</th>
+			<!-- usuario? -->
+		</tr>
+		<tr th:each="comentario :${comentarios}">
+			<td th:text="${comentario.fecha}"></td>
+			<td th:text="${comentario.texto}"></td>
+			
+			<td> <a th:href="@{/comentarios/eliminar(idComentarios=${comentario.idComentarios})}">Eliminar</a> </td>
+			<td> <a th:href="@{/comentarios/modificar(idComentarios=${comentario.idComentarios})}">Modificar</a> </td>
+		</tr>
+	</table>
+	
+	<a th:href="@{/comentarios/inserta}"> Inserta comentario</a>
+</body>
+</html>

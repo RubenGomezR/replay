@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Buscador - RePlay</title>
+ <link rel="icon" type="image/x-icon" href="/images/IconHome.png">
+<link rel="stylesheet" href="../fontawesome_listo/css/all.css">
+<link href="../card.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<!-- encabezado -->
+	<header th:replace="/fragmentos/usuAnonimo/frag_header ::header"></header>
+    
+    
+    
+            
+     <!-- prueba buscar anuncios-->
+    <div th:if="${anuncios.size}"> <!-- si tiene = true -->
+    <h2>RESULTADOS ANUNCIOS</h2>
+    </div>
+    
+    <div th:unless="${anuncios.size}"> <!-- si no tiene = false -->
+    <h3>NO HAY RESULTADOS (anuncios)</h3>
+    </div>
+    
+    
+    
+    <!-- anuncios -->
+	<article>
+	  <div class="container">
+        <div class="card" th:each="anuncio :${anuncios}">
+        <a th:href="@{/anuncios/seleccionar(idProductos=${anuncio.idProductos})}">
+            <div class="card-header">
+                <img th:src="@{${ '/' + anuncio.urlImg}}" alt="rover" />
+            </div>
+            <div class="card-body">
+            	<div class="encabezado">
+                	<span class="precio" th:text="${anuncio.precio}"></span>
+                	
+                </div>
+                <h4 th:text="${anuncio.nombre}"></h4>
+                <p th:text="${anuncio.categoria}"></p>
+                <p th:text="${anuncio.estado}"></p>
+                <p th:text="${anuncio.descripcion}"></p>
+                <!--  <a th:href="@{/anuncios/seleccionar(idProductos=${anuncio.idProductos})}">Ver Producto</a> -->
+                
+            </div>
+            </a>
+        </div>
+       </div>
+     </article>
+     
+     
+     <!-- prueba buscar usuarios-->
+    <div th:if="${usuarios.size}"> <!-- si tiene = true -->
+    <h2>RESULTADOS USUARIOS</h2>
+    </div>
+    
+    <div th:unless="${usuarios.size}"> <!-- si no tiene = false -->
+    <h3>NO HAY RESULTADOS (usuarios)</h3>
+    </div>
+     
+     
+     <!-- usuarios -->
+     <article>
+	  <div class="container">
+        <div class="card" th:each="usuario :${usuarios}">
+          <a th:href="@{/usuarios/seleccionar(idUsuarios=${usuario.idUsuarios})}"> 
+            <div class="card-header">
+                <img src="https://c0.wallpaperflare.com/preview/483/210/436/car-green-4x4-jeep.jpg" alt="rover" />
+            </div>
+            <div class="card-body">
+            	<div class="encabezado">
+                	<!--  <span class="tag tag-teal" th:text="${anuncio.precio}"></span> -->
+                	<a th:href="@{/anuncios/inserta}"><i class="fa-solid fa-heart"></i></a>
+                </div>
+                <h4 th:text="${usuario.nombre}"></h4>
+                <p th:text="${usuario.correo}"></p>
+                <!--  <a th:href="@{/anuncios/seleccionar(idProductos=${anuncio.idProductos})}">Ver Producto</a> -->
+                <div class="user">
+                    <img src="https://yt3.ggpht.com/a/AGF-l7-0J1G0Ue0mcZMw-99kMeVuBmRxiPjyvIYONg=s900-c-k-c0xffffffff-no-rj-mo" alt="user" />
+                    <div class="user-info">
+                        <h5>July Dec</h5>
+                        <small>2h ago</small>
+                    </div>
+                </div>
+            </div>
+            </a>
+        </div>
+       </div>
+     </article>
+     
+    </body>
+</html>

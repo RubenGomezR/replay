@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Selección - RePlay</title>
+ <link rel="icon" type="image/x-icon" href="/images/IconHome.png">
+<link rel="stylesheet" href="../fontawesome_listo/css/all.css">
+<link href="../cardSeleccion.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<!-- encabezado -->
+	<header th:replace="/fragmentos/usuRegistrado/frag_header ::header"></header>
+    
+
+	<article>
+	  <div class="container">
+        <div class="card">
+            <div class="card-header">
+               <img th:src="@{${ '/' + anuncio.urlImg}}" alt="rover" />
+            </div>
+            <div class="card-body">
+            <div class="encabezado">
+                <span class="precio" th:text="${anuncio.precio}"></span>
+                <div th:switch="${anuncio.precio}">
+                		<a th:case="*" th:href="@{/anuncios/like(idProductos=${anuncio.idProductos})}"><i class="fa-solid fa-heart"></i></a>
+                		<a th:case="2" th:href="@{/anuncios/like(idProductos=${anuncio.idProductos})}"><i class="fa-regular fa-heart"></i></a>
+                		<a th:case="1" th:href="@{/anuncios/like(idProductos=${anuncio.idProductos})}"><i class="fa-solid fa-heart-crack"></i></a>
+                	</div>
+            </div>
+                <h4 th:text="${anuncio.nombre}"></h4>
+                <p th:text="${anuncio.categoria}"></p>
+                <p th:text="${anuncio.estado}"></p>
+                <p th:text="${anuncio.descripcion}"></p>
+                <!--  <a th:href="@{/anuncios/seleccionar(idProductos=${anuncio.idProductos})}">Ver Producto</a> -->
+                <div class="user">
+                    <img src="/images/UserIcon.png" alt="user" />
+                    <div class="user-info">
+                        <h5 th:text="${anuncio.usuario.nombre}"></h5> 
+                    </div>
+                </div>
+            </div>
+        </div>
+       </div>
+    </article>
+    
+    <article>
+	  <div class="container">
+        <div class="card">
+            
+            <div class="card-body">
+            <span>Comentarios</span>
+            
+            <article>
+				  <div class="container">
+			        <div class="card" th:each="comentario :${comentarios}">
+		               	 <span th:text="${comentario.usuario.nombre}"/>  
+               			 <span th:text="${comentario.texto}"/>
+               			 <span th:text="${comentario.fecha}"/> 
+			       </div>
+			     </article>
+            
+            </div>
+        </div>
+       </div>
+       
+      
+    </article>
+    
+    <article>
+	  <div class="containerInsertar">
+        <div class="card">
+            
+            <div class="card-bodyInsertar">
+            <span>Inserte un comentario</span>
+                <form class="form" th:action="@{/comentarios/insertarR}" th:object="${comentario}" method="POST">
+	                <textarea name="texto" rows="5" cols="70">Escribe aquí tus comentarios</textarea>
+	                <input type="hidden" id="idProductos" name="idProductos" th:value="${anuncio.idProductos}"/>
+	                <button class="boton" type="submit"></button>
+                </form>
+                
+            </div>
+        </div>
+       </div>
+       
+      
+    </article>
+    
+    </body>
+</html>

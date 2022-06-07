@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicia Sesión - RePlay</title>
+ 	<link rel="icon" type="image/x-icon" href="/images/IconHome.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../estilos.css">
+</head>
+
+<body>
+	   
+	<form class="form" th:action="@{/usuarios/accede}" th:object="${usuario}" method="POST">
+        <h5>Inicia Sesión</h5>
+        <input class="campos" type="text" name="correo" placeholder="Ingrese su correo" th:field="*{correo}">
+        <input class="campos" type="password" name="contrasena" placeholder="Ingrese su contraseña">
+		
+        <input class="boton" type="submit" value="Iniciar sesión">
+    </form>
+
+</body>
+
+</html>

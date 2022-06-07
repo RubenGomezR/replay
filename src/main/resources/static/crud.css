@@ -1,0 +1,169 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+* {
+    box-sizing: border-box;
+    color: inherit;
+    text-decoration: none;
+    
+}
+
+
+/**/
+.contenedor0 {
+  width: 30%; 
+  margin: 5% auto 0 auto;
+  background-color: subtle-white;
+  max-width: 800px;
+  text-align: center;
+  min-width: 161px;
+  
+}
+
+.cruds{
+	margin: 0 auto;
+    border: 1px solid #ccc;
+    background-color: #A2A19B;
+    border-radius: 10px;
+    width: 100%;
+    margin-top: 50px;
+    padding: 50px;
+    padding: 5px;
+    font-family: "Roboto", sans-serif;
+    list-style-type: none;
+    
+}
+
+.cruds li {
+	display: inline-block;
+      padding: 15px;
+      position: relative;
+}
+
+.cruds li:hover {
+	background-color: gray;
+	border-radius: 10px;
+}
+
+/*crud*/
+.contenedor {
+    font-family: "Roboto", sans-serif;
+    width: 70%;
+    color: black;
+    margin: 100px auto;
+}
+
+.tabla {
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    width: 100%;
+    margin-top: 50px;
+    padding: 50px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    padding: 5px;
+    font-family: "Roboto", sans-serif;
+}
+
+.tabla tr {
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
+.tabla td,
+.tabla th {
+    padding: 10px;
+    text-align: center;
+}
+
+.tabla th {
+    text-transform: uppercase;
+    font-family: 18px;
+    Letter-spacing: 1px;
+}
+
+.tabla tbody tr:nth-child(even) {
+    background-color: lightsteelblue;
+}
+
+.tabla tbody tr:hover {
+    background-color: blanchedalmond;
+}
+
+
+/*botones*/
+
+.eliminar {
+    background-color: #cb4e4e;
+    color: white;
+    cursor: pointer;
+}
+
+.eliminar:hover {
+    background-color: #ab3c3c;
+}
+
+.modificar {
+    background-color: #4593e3;
+    color: white;
+    cursor: pointer;
+}
+
+.modificar:hover {
+    background-color: #226fbe;
+}
+
+.contenedor .insertar {
+    margin-top: 155px;
+    background: #17aa56;
+    color: #fff;
+    box-shadow: 0 6px #119e4d;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.contenedor .insertar:hover {
+    background-color: #119e4d;
+    cursor: pointer;
+}
+
+
+/*media*/
+
+@media (max-width:1080px) {
+	.contenedor{
+		max-width: 345px;
+	}
+	
+    .tabla {
+        border: 0;
+    }
+    .tabla tr {
+        margin-bottom: 10px;
+        display: block;
+        border-bottom: 2px solid #ddd;
+        border: none;
+    }
+    .tabla td {
+        display: block;
+        font-size: 16px;
+        border-bottom: 1px solid #ccc;
+        text-align: right;
+    }
+    .tabla td:last-child {
+        border-bottom: 0;
+    }
+    .tabla td:before {
+        content: attr(data-label);
+        float: left;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+    .tabla th {
+        display: none;
+    }
+    .tabla .eliminar,
+    .tabla .modificar {
+        text-align: center;
+    }
+}

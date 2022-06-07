@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../crud.css">
+</head>
+<body>
+
+	<h1>CRUD Usuarios</h1>
+
+<div class="contenedor">
+	<a class="insertar" th:href="@{/usuarios/inserta}"> Inserta usuario</a>
+	<table class="tabla">
+		<tr class="titulos">
+			<th>Nombre</th>
+			<th>Correo</th>
+			<th>Telefono</th>
+			<th>Fecha Creación</th>
+			<th>CRUD</th>
+			<!-- usuario? -->
+		</tr>
+		<tr th:each="usuario :${usuarios}">
+			<td data-label="Nombre" th:text="${usuario.nombre}"></td>
+			<td data-label="Correo" th:text="${usuario.correo}"></td>
+			<td data-label="Teléfono" th:text="${usuario.telefono}"></td>
+			<td data-label="Fecha Creación" th:text="${usuario.fechaCreacion}"></td>
+			<td class="eliminar"> <a th:href="@{/usuarios/eliminar(idUsuarios=${usuario.idUsuarios})}">Eliminar</a> </td>
+			<td class="modificar"> <a th:href="@{/usuarios/modificar(idUsuarios=${usuario.idUsuarios})}">Modificar</a> </td>
+		</tr>
+	</table>
+	
+	
+	</div>
+</body>
+</html>

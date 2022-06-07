@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrate - RePlay</title>
+ 	<link rel="icon" type="image/x-icon" href="/images/IconHome.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../estilos.css">
+</head>
+
+<body>
+
+    <!--prueba registro-->
+      <!--  
+    <section class="registro">
+        <h5>Registrate</h5>
+        <input class="campos" type="text" name="nombre" placeholder="Ingrese su nombre">
+        <input class="campos" type="text" name="apellidos" placeholder="Ingrese sus apellidos">
+        <input class="campos" type="text" name="correo" placeholder="Ingrese su correo">
+        <input class="campos" type="text" name="teléfono" placeholder="Ingrese su teléfono">
+        <input class="campos" type="password" name="contraseña" placeholder="Ingrese su contraseña">
+
+        <p>Estoy de acuerdo con <a href="#">Terminos y Condiciones</a></p>
+        <input class="boton" type="submit" value="Registrar">
+
+        <p><a href="#"> ¿Ya tienes Cuenta?</a></p>
+    </section>
+	-->
+	
+	   
+	<form class="form" th:action="@{/usuarios/persistir}" th:object="${usuario}" method="POST">
+        <h5>Registrate</h5>
+        <input class="campos" type="text" name="nombre" placeholder="Ingrese su nombre" th:field="*{nombre}">
+        <input class="campos" type="text" name="correo" placeholder="Ingrese su correo" th:field="*{correo}">
+        <input class="campos" type="text" name="teléfono" placeholder="Ingrese su teléfono"  th:field="*{telefono}">
+        <input class="campos" type="password" name="contraseña" placeholder="Ingrese su contraseña">
+        <p>Estoy de acuerdo con <a href="#">Terminos y Condiciones</a></p>
+        <input class="boton" type="submit" value="Registrar">
+
+        <p><a href="#"> ¿Ya tienes Cuenta?</a></p>
+    </form>
+    
+
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../crud.css">
+<link rel="stylesheet" href="../fontawesome_listo/css/all.css">
+</head>
+<body>
+
+	<h1>CRUD Anuncios</h1>
+	
+	<div class="contenedor0">
+		<ul class="cruds">
+                <a th:href="@{/anuncios/}"><li> <i class="fa-solid fa-bullhorn"></i> Anuncios</li></a>
+                <a th:href="@{/usuarios/}"> <li> <i class="fa-solid fa-users"></i> Usuarios</li> </a>
+                <a th:href="@{/comentarios/}"> <li> <i class="fa-solid fa-comments"></i> Comentarios</li></a>
+             </tr>
+    	</ul>
+	</div>
+
+    <div class="contenedor">
+        <a class="insertar" th:href="@{/anuncios/inserta}"> Inserta anuncio</a>
+
+        <table class="tabla">
+            <tr class="titulos">
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Estado</th>
+                <th>Categoria</th>
+                <th>Descripcion</th>
+                <th>CRUD</th>
+                <!-- usuario? -->
+            </tr>
+            <tr th:each="anuncio :${anuncios}">
+                <td data-label="Nombre" th:text="${anuncio.nombre}">asdasd</td>
+                <td data-label="Precio" th:text="${anuncio.precio}">asdasd</td>
+                <td data-label="estado" th:text="${anuncio.estado}">asdasda</td>
+                <td data-label="Categoria" th:text="${anuncio.categoria}">asdasd</td>
+                <td data-label="Descripcion" th:text="${anuncio.descripcion}">asdasd</td>
+                <td class="eliminar"> <a th:href="@{/anuncios/eliminar(idProductos=${anuncio.idProductos})}">Eliminar</a> </td>
+                <td class="modificar"> <a th:href="@{/anuncios/modificar(idProductos=${anuncio.idProductos})}">Modificar</a> </td>
+            </tr>
+        </table>
+
+
+    </div>
+</body>
+</html>

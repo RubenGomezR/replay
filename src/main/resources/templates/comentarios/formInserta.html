@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Formulario insertar</title>
+</head>
+<body>
+
+	<h1>INSERCION Comentario</h1>
+	
+	<form th:action="@{/comentarios/persistir}" th:object="${comentario}" method="POST">
+		<p> Fecha: <input type="date" th:field="*{fecha}"> </p>
+		<p> Texto: <input type="text" th:field="*{texto}"> </p>
+		
+		
+		
+		<p> <input type="submit" value="inserta"/> </p>
+	</form>
+</body>
+</html>

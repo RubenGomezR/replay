@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Selección - RePlay</title>
+ <link rel="icon" type="image/x-icon" href="/images/IconHome.png">
+<link rel="stylesheet" href="../fontawesome_listo/css/all.css">
+<link href="../cardSeleccion.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<!-- encabezado -->
+	<header th:replace="/fragmentos/usuAnonimo/frag_header ::header"></header>
+    
+    
+  
+	<!-- anuncio seleccionado -->
+	<article>
+	  <div class="container">
+        <div class="card">
+            <div class="card-header">
+               <img th:src="@{${ '/' + anuncio.urlImg}}" alt="rover" />
+            </div>
+            <div class="card-body">
+                <span class="precio" th:text="${anuncio.precio}"></span>
+                <h4 th:text="${anuncio.nombre}"></h4>
+                <p th:text="${anuncio.categoria}"></p>
+                <p th:text="${anuncio.estado}"></p>
+                <p th:text="${anuncio.descripcion}"></p>
+                <!--  <a th:href="@{/anuncios/seleccionar(idProductos=${anuncio.idProductos})}">Ver Producto</a> -->
+                <div class="user">
+                    <img src="/images/UserIcon.png" alt="user" />
+                    <div class="user-info">
+                        <h5 th:text="${anuncio.usuario.nombre}"></h5> 
+                    </div>
+                </div>
+            </div>
+        </div>
+       </div>
+    </article>
+    </body>
+</html>

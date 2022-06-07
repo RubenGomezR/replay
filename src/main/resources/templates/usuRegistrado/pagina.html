@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>RePlay</title>
+ <link rel="icon" type="image/x-icon" href="/images/IconHome.png">
+<link rel="stylesheet" href="../fontawesome_listo/css/all.css">
+<link href="../card.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+	<!-- encabezado -->
+	<header th:replace="/fragmentos/usuRegistrado/frag_header ::header"></header>
+    
+    
+     <!-- categorias -->
+    <div th:replace="/fragmentos/usuRegistrado/frag_categorias ::categorias"></div>
+    
+    
+    <!-- anuncios -->
+	<article>
+	  <div class="container">
+        <div class="card" th:each="anuncio :${anuncios}">
+        <a th:href="@{/anuncios/seleccionarR(idProductos=${anuncio.idProductos})}">
+            <div class="card-header">
+                <img th:src="@{${ '/' + anuncio.urlImg}}" alt="rover" />
+            </div>
+            <div class="card-body">
+            	<div class="encabezado">
+                	<span class="precio" th:text="${anuncio.precio}"></span>
+                	<div th:switch="${anuncio.precio}">
+                		<a th:case="*" th:href="@{/anuncios/like(idProductos=${anuncio.idProductos})}"><i class="fa-solid fa-heart"></i></a>
+                		<a th:case="2" th:href="@{/anuncios/like(idProductos=${anuncio.idProductos})}"><i class="fa-regular fa-heart"></i></a>
+                		<a th:case="1" th:href="@{/anuncios/like(idProductos=${anuncio.idProductos})}"><i class="fa-solid fa-heart-crack"></i></a>
+                	</div>
+                	
+                </div>
+                <h4 th:text="${anuncio.nombre}"></h4>
+                <p th:text="${anuncio.categoria}"></p>
+                <p th:text="${anuncio.estado}"></p>
+                <p th:text="${anuncio.descripcion}"></p>
+                <!--  <a th:href="@{/anuncios/seleccionar(idProductos=${anuncio.idProductos})}">Ver Producto</a> -->
+                <!--  
+                <div class="user">
+                    <img src="https://yt3.ggpht.com/a/AGF-l7-0J1G0Ue0mcZMw-99kMeVuBmRxiPjyvIYONg=s900-c-k-c0xffffffff-no-rj-mo" alt="user" />
+                    <div class="user-info">
+                        <h5>July Dec</h5>
+                        <small>2h ago</small>
+                    </div>
+                </div> -->
+            </div>
+            </a>
+        </div>
+       </div>
+     </article>
+</html>

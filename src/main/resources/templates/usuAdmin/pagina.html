@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../fontawesome_listo/css/all.css">
+<link href="../card.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+	<header>
+        <!-- <img class="logo" src="images/logo.jpg" alt="logo"> -->
+        <a class="logo" th:href="@{/Home/R}"> <p>hola</p> </a>
+        <nav>
+            <ul class="nav">
+            	<li class="cajaBuscador"> <form th:action="@{/anuncios/buscarR}" class="formBuscador" 
+            		th:object="${anuncio}">
+                <input class="textoBuscador" type="search" placeholder="Busca ..." name="query">
+                <button class="botonBuscador" type="submit">
+                    <i class="fa fa-search"
+                        style="font-size: 18px;">
+                    </i>
+                </button>
+            </form> </li>
+                <!-- <li><a href="#">Inicio</a></li> -->
+                <li><a href="#"><i class="fa-solid fa-heart"></i></a></li>
+                <li class="new"><a th:href="@{/anuncios/inserta}">+</a></li> 
+                <li><a th:href="@{/anuncios}"><i class="fa-solid fa-circle-user"></i></a></li>
+                <li><a href="#"><i class="fa-solid fa-circle-xmark"></i></a></li>
+                <!--  <a th:href="@{/anuncios/inserta}"><li class="new">+</a>  -->
+            </ul>
+        </nav>
+        <!--  <a class="botonR" th:href="@{/usuarios/inserta}"><button>Registrate</button></a> 
+        <a class="botonR" ><button>Iniciar Sesión</button></a> -->
+    </header>
+    
+    
+    <!-- categorias -->
+    <div class="contenedor0">
+		<ul class="categorias">
+                <a th:href="@{/anuncios/VideojuegosR}"><li> <i class="fa-solid fa-dice-d6"></i> Videojuegos</li></a>
+                <a th:href="@{/anuncios/ConsolasR}"> <li> <i class="fa-solid fa-gamepad"></i> Consolas</li> </a>
+                <a th:href="@{/anuncios/PC GamingR}"> <li> <i class="fa-solid fa-desktop"></i> PC Gaming</li></a>
+                <a th:href="@{/anuncios/AccesoriosR}"> <li> <i class="fa-solid fa-headset"></i> Accesorios</li></a>
+             </tr>
+    	</ul>
+	</div>
+    
+    
+    <!-- anuncios -->
+	<article>
+	  <div class="container">
+        <div class="card" th:each="anuncio :${anuncios}">
+        <a th:href="@{/anuncios/seleccionarR(idProductos=${anuncio.idProductos})}">
+            <div class="card-header">
+                <img src="https://c0.wallpaperflare.com/preview/483/210/436/car-green-4x4-jeep.jpg" alt="rover" />
+            </div>
+            <div class="card-body">
+            	<div class="encabezado">
+                	<span class="precio" th:text="${anuncio.precio}"></span>
+                	<a th:href="@{/anuncios/inserta}"><i class="fa-solid fa-heart"></i></a>
+                </div>
+                <h4 th:text="${anuncio.nombre}"></h4>
+                <p th:text="${anuncio.categoria}"></p>
+                <p th:text="${anuncio.descripcion}"></p>
+                <!--  <a th:href="@{/anuncios/seleccionar(idProductos=${anuncio.idProductos})}">Ver Producto</a> -->
+                <!--  
+                <div class="user">
+                    <img src="https://yt3.ggpht.com/a/AGF-l7-0J1G0Ue0mcZMw-99kMeVuBmRxiPjyvIYONg=s900-c-k-c0xffffffff-no-rj-mo" alt="user" />
+                    <div class="user-info">
+                        <h5>July Dec</h5>
+                        <small>2h ago</small>
+                    </div>
+                </div> -->
+            </div>
+            </a>
+        </div>
+       </div>
+     </article>
+</html>

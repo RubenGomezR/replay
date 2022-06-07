@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1>MOFICICANDO USUARIO</h1>
+	
+	<form th:action="@{/usuarios/persistir}" method="post" th:object="${usuario}">
+		
+		<p> Nombre: <input type="text" th:field="*{nombre}"> </p>
+		<p> Correo: <input type="text" th:field="*{correo}"> </p>
+		<p> Telefono: <input type="text" th:field="*{telefono}"> </p>
+		<p> Fecha de creacion: <input type="date" th:field="*{fechaCreacion}"> </p>
+		
+		<input type="hidden" th:field="*{idUsuarios}" th:value="${usuario.idUsuarios}"/>
+		
+		<input type="submit" value="modificar" />
+		
+	</form>
+
+</body>
+</html>

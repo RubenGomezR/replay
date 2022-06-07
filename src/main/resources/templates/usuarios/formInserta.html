@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Formulario insertar</title>
+</head>
+<body>
+
+	<h1>INSERCION USUARIO</h1>
+	
+	<form th:action="@{/usuarios/persistir}" th:object="${usuario}" method="POST">
+		<p> Nombre: <input type="text" th:field="*{nombre}"> </p>
+		<p> Correo: <input type="text" th:field="*{correo}"> </p>
+		<p> Telefono: <input type="text" th:field="*{telefono}"> </p>
+		<p> Fecha de creacion: <input type="date" th:field="*{fechaCreacion}"> </p>
+		
+		<p> <input type="submit" value="inserta"/> </p>
+	</form>
+</body>
+</html>

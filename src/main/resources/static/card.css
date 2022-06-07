@@ -1,0 +1,283 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap');
+
+* {
+    box-sizing: border-box;
+    color: inherit;
+    text-decoration: none;
+    
+}
+
+
+body {
+    margin: 0;
+    background-color: #f7f8fc;
+    font-family: "Roboto", sans-serif;
+    color: #10182f;
+    
+}
+
+/*HEADER - NAV*/
+header {
+    display: flex;
+    justify-content: space-between;
+    /*space-between*/
+    /*flex-end: derecha*/
+    width: 100%;
+    height: 80px;
+    align-items: center;
+    padding: 25px 10%;
+    background-color: #242F9B;
+}
+
+
+
+li,
+a,
+button {
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+    color: white;
+}
+
+.logo {
+    cursor: pointer;
+    margin-right: auto;
+    color: azure;
+    font-family: 'Kdam Thmor Pro', sans-serif;
+    font-size:1.3em;
+}
+
+.nav {
+    list-style: none;
+}
+
+.nav li {
+    display: inline-block;
+    padding: 0px 15px;
+    margin-left: 5px;
+}
+
+.nav li a {
+    transition: all 0.3s ease 0s;
+}
+
+.nav li a:hover :not(.añadir,
+.fa-solid) {
+    color: coral;
+}
+
+/*buscador*/
+.cajaBuscador {
+	margin: auto;
+}
+
+.cajaBuscador input {
+	height: 32px;
+	border-radius: 10px;
+	border:none;
+	color: black;
+}
+
+
+/*boton nuevo anuncio*/
+.new {
+    background-color: #5FB8FF;
+    border: 3px solid white;
+    border-radius: 100%;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    transition: all 0.2s linear;
+    cursor: pointer;
+}
+
+.new a {
+    font-family: "Roboto", sans-serif;
+    font-size: 1.4em;
+    color: white;
+    line-height: 30px;
+    position: relative;
+    right: 5px;
+}
+
+.new:hover {
+    background-color: #4661F5;
+    color: white;
+    border-radius: 20%;
+}
+
+.fa-solid {
+    color: white;
+    font-size: 1.6em;
+    transition: all 0.3s ease 0s;
+}
+
+.fa-solid:hover {
+    color: #9BA3EB;
+}
+
+header button {
+    padding: 9px 25px;
+    margin-left: 20px;
+    border: none;
+    background: #9BA3EB;
+    color: #fff;
+    box-shadow: 0 6px #646FD4;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    transition: all 0.3s;
+    
+}
+
+button:hover {
+    background-color: #646FD4;
+    cursor: pointer;
+}
+
+/*categorias*/
+/**/
+.contenedor0 {
+  width: 40%; 
+  margin: 5% auto 0 auto;
+  background-color: subtle-white;
+  max-width: 800px;
+  text-align: center;
+  min-width: 161px;
+  
+  
+}
+
+.categorias{
+	margin: 0 auto;
+    border: 1px solid #ccc;
+    background-color: #9BA3EB;
+    border-radius: 10px;
+    width: 100%;
+    margin-top: 50px;
+    padding: 50px;
+    padding: 5px;
+    font-family: "Roboto", sans-serif;
+    list-style-type: none;
+    
+}
+.categorias li {
+	display: inline-block;
+    padding: 15px;
+    position: relative;
+    
+}
+
+.categorias li:hover {
+	background-color: gray;
+	border-radius: 10px;
+}
+
+
+/*ANUNCIOS*/
+article{
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    color:black;
+}
+
+.container {
+	margin-top: 100px;
+    display: flex;
+    width: 1040px;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.card {
+    margin: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 300px;
+}
+
+.card:hover {
+	box-shadow: 0 2px 20px #242F9B;
+}
+
+.card-header img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    min-height: 250px;
+    color:black;
+}
+
+.encabezado {
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.encabezado .fa-solid {
+	color:black;
+	margin-right: 10px;
+}
+
+.encabezado .fa-solid:hover {
+	color:gray;
+}
+
+.precio {
+    background-color: #47bcd4;
+    border-radius: 50px;
+    font-size: 1em;
+    color: #fff;
+    padding: 2px 10px;
+    text-transform: uppercase;
+    cursor: pointer;
+    height: 30px;
+    line-height: 27px;
+    font-family: "Roboto", sans-serif;
+    margin-right:180px;
+}
+
+.precio::after {
+	/*euro*/
+	content:"\20AC";
+	
+}
+
+
+.card-body p {
+    font-size: 13px;
+   /* margin: 0 0 40px; */
+}
+
+.user {
+    display: flex;
+    margin-top: auto;
+}
+
+.user img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.user-info h5 {
+    margin: 0;
+}
+
+.user-info small {
+    color: #545d7a;
+}

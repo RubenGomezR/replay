@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="../cardSeleccion.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<header>
+        <!-- <img class="logo" src="images/logo.jpg" alt="logo"> -->
+        <a class="logo" th:href="@{/Home}"> <p>hola</p> </a> 
+        <nav>
+            <ul class="nav">
+                <!-- <li><a href="#">Inicio</a></li> -->
+                <!-- <li><a href="#"><i class="fa-solid fa-heart"></i></a></li>
+                <li class="añadir"><a href="#">+</a></li> -->
+            </ul>
+        </nav>
+        <a class="botonR" th:href="@{/usuarios/inserta}"><button>Registrate</button></a> 
+        <a class="botonR" ><button>Iniciar Sesión</button></a>
+    </header>
+
+	<article>
+	  <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <img src="https://c0.wallpaperflare.com/preview/483/210/436/car-green-4x4-jeep.jpg" alt="rover" />
+            </div>
+            <div class="card-body">
+                <!--  <span class="tag tag-teal" th:text="${anuncio.precio}"></span> -->
+                <h4 th:text="${usuario.nombre}"></h4>
+                <p th:text="${usuario.correo}"></p>
+                
+                <div class="user">
+                    <img src="https://yt3.ggpht.com/a/AGF-l7-0J1G0Ue0mcZMw-99kMeVuBmRxiPjyvIYONg=s900-c-k-c0xffffffff-no-rj-mo" alt="user" />
+                    <div class="user-info">
+                        <h5>July Dec</h5>
+                        <small>2h ago</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+       </div>
+    </article>
+</html>
