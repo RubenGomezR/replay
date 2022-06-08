@@ -1,0 +1,1 @@
+-Dspring.datasource.url=jdbc:mysql://b65659d873b3c1:fbe1666da80e557@eu-cdbr-west-02.cleardb.net/heroku_4a500a250840368?reconnect=true
