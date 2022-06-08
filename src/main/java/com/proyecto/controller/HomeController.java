@@ -13,7 +13,7 @@ import com.proyecto.servicio.ServicioComentario;
 import com.proyecto.servicio.ServicioUsuario;
 
 @Controller
-@RequestMapping("Home")
+@RequestMapping("/Home")
 public class HomeController {
 
 	@Autowired
