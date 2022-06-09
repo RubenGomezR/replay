@@ -75,7 +75,7 @@ public class ServicioAnuncioImpl implements ServicioAnuncio {
             
             // save the file on the local file system
             try {
-                Path path = Paths.get("src/main/resources/static/imagenes_anuncio/" + nuevoNombre);
+                Path path = Paths.get("static/imagenes_anuncio/" + nuevoNombre);
                 Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
                 nameFile = "imagenes_anuncio/" + nuevoNombre;
             } catch (IOException e) {
