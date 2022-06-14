@@ -107,7 +107,6 @@ public class UsuarioController {
 	
 	//seleccionar usuario buscador anonimo
 	@RequestMapping("/seleccionarU")
-	@Authorized(roles = {Authorized.REGISTRADO})
 	public String seleccionarU(@RequestParam int idUsuarios, Model modelo) {
 		modelo.addAttribute("usuario", su.findById(idUsuarios).get());
 		modelo.addAttribute("anuncios", sa.findByIdUsuario(idUsuarios));
