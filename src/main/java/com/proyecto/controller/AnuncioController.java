@@ -250,7 +250,7 @@ public class AnuncioController {
 	//Les pasamos las constantes declaradas en CategoryEnum
 	
 	@RequestMapping("/VideojuegosA")
-	@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+	@Authorized(roles = {Authorized.ADMIN})
 	public String buscarCategoriaVA(Model modelo) {
 		modelo.addAttribute("anuncios", sa.findByCategoria(CategoryEnum.VIDEOJUEGOS.getcategoria()));
 		modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
@@ -258,7 +258,7 @@ public class AnuncioController {
 		}
 	
 	@RequestMapping("/ConsolasA")
-	@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+	@Authorized(roles = {Authorized.ADMIN})
 	public String buscarCategoriaCA(Model modelo) {
 		modelo.addAttribute("anuncios", sa.findByCategoria(CategoryEnum.CONSOLAS.getcategoria()));
 		modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
@@ -266,7 +266,7 @@ public class AnuncioController {
 		}
 	
 	@RequestMapping("/PC GamingA")
-	@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+	@Authorized(roles = {Authorized.ADMIN})
 	public String buscarCategoriaPA(Model modelo) {
 		modelo.addAttribute("anuncios", sa.findByCategoria(CategoryEnum.PC_GAMING.getcategoria()));
 		modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
@@ -274,7 +274,7 @@ public class AnuncioController {
 		}
 	
 	@RequestMapping("/AccesoriosA")
-	@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+	@Authorized(roles = {Authorized.ADMIN})
 	public String buscarCategoriaAA(Model modelo) {
 		modelo.addAttribute("anuncios", sa.findByCategoria(CategoryEnum.ACCESORIOS.getcategoria()));
 		modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
@@ -283,7 +283,7 @@ public class AnuncioController {
 	
 	/*buscar usuAdmin*/
 	@GetMapping("/buscarA")
-	@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+	@Authorized(roles = {Authorized.ADMIN})
 	public String buscar2A(@RequestParam String query, Model modelo) {
 		modelo.addAttribute("anuncios", sa.findByAnuncio(query));
 		modelo.addAttribute("usuarios", su.findByNombre(query));
@@ -293,7 +293,7 @@ public class AnuncioController {
 	
 	/* seleccionar usuAdmin*/
 	@RequestMapping("/seleccionarA")
-	@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+	@Authorized(roles = {Authorized.ADMIN})
 	public String seleccionarA(@RequestParam int idProductos, Model modelo) {
 		modelo.addAttribute("anuncio", sa.findById(idProductos));
 		modelo.addAttribute("comentarios", sco.getByIdAnuncio(idProductos));
@@ -304,7 +304,7 @@ public class AnuncioController {
 	
 	//Ir PaginaLikes usuAdmin
 		@RequestMapping("/paginaLikesA")
-		@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+		@Authorized(roles = {Authorized.ADMIN})
 		public String paginaLikesA(Model modelo) {
 			modelo.addAttribute("anuncios", sa.findAllLikesR());
 			modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
@@ -313,7 +313,7 @@ public class AnuncioController {
 		
 		//INSERTAR anuncio usuAdmin
 		@RequestMapping("/insertaA")
-		@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+		@Authorized(roles = {Authorized.ADMIN})
 		public String insertaA(Model modelo) {
 			modelo.addAttribute("anuncio", new AnuncioVO());
 			modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
@@ -323,7 +323,7 @@ public class AnuncioController {
 		
 		//MODIFICAR anuncio usuAdmin
 		@RequestMapping("/modificarA")
-		@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+		@Authorized(roles = {Authorized.ADMIN})
 		public String modificarA(@RequestParam int idProductos, Model modelo) {
 			modelo.addAttribute("anuncio", sa.findById(idProductos));
 			modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
@@ -333,7 +333,7 @@ public class AnuncioController {
 		
 		
 		@RequestMapping("/persistirA")
-		@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+		@Authorized(roles = {Authorized.ADMIN})
 		public String persistirPA (@RequestParam("file") MultipartFile file, @ModelAttribute AnuncioVO anuncio) {
 			sa.save(anuncio, file);
 			return "redirect:/usuarios/perfilA";
@@ -349,7 +349,7 @@ public class AnuncioController {
 		
 		//AÑADIR A LIKES usuarioRegistrado
 		@RequestMapping("/likeA")
-		@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+		@Authorized(roles = {Authorized.ADMIN})
 		public String likeA(@RequestParam int idProductos, Model model) {
 			sau.saveLike(idProductos);
 			return "redirect:/Home/A";
@@ -361,7 +361,7 @@ public class AnuncioController {
 		//añadir
 		//INSERTAR 
 		@RequestMapping("/insertaCrudA")
-		@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+		@Authorized(roles = {Authorized.ADMIN})
 		public String insertaCrudA(Model modelo) {
 			modelo.addAttribute("anuncio", new AnuncioVO());
 			modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
@@ -370,7 +370,7 @@ public class AnuncioController {
 		
 		//MODIFICAR anuncio usuarioRegistrado
 		@RequestMapping("/modificarCrudA")
-		@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+		@Authorized(roles = {Authorized.ADMIN})
 		public String modificarCrudA(@RequestParam int idProductos, Model modelo) {
 			modelo.addAttribute("anuncio", sa.findById(idProductos));
 			modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
@@ -379,7 +379,7 @@ public class AnuncioController {
 		
 		//persistir
 		@RequestMapping("/persistirCrudA")
-		@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+		@Authorized(roles = {Authorized.ADMIN})
 		public String persistirCrudA (@RequestParam("file") MultipartFile file, @ModelAttribute AnuncioVO anuncio) {
 			sa.save(anuncio, file);
 			return "redirect:/anuncios";

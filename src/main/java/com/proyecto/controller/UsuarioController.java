@@ -74,12 +74,14 @@ public class UsuarioController {
 		return "usuarios/seleccion";
 	}
 	
+	//hacer login
 	@RequestMapping("/login")
 	public String login(Model modelo) {
 		modelo.addAttribute("usuario", new UsuarioVO());
 		return "usuarios/login";
 	}
 	
+	//permitir acceso dependiendo del rol
 	@RequestMapping("/accede")
 	public String accede(@RequestParam String correo, String contrasena, Model modelo) {
 		
@@ -95,6 +97,7 @@ public class UsuarioController {
 		return redirect;
 	}
 	
+	//cerrar sesion
 	@RequestMapping("/logout")
 	public String logout(Model modelo) {
 		su.logout();
@@ -104,6 +107,7 @@ public class UsuarioController {
 	
 	//seleccionar usuario buscador anonimo
 	@RequestMapping("/seleccionarU")
+	@Authorized(roles = {Authorized.REGISTRADO})
 	public String seleccionarU(@RequestParam int idUsuarios, Model modelo) {
 		modelo.addAttribute("usuario", su.findById(idUsuarios).get());
 		modelo.addAttribute("anuncios", sa.findByIdUsuario(idUsuarios));
@@ -113,6 +117,7 @@ public class UsuarioController {
 	
 	//seleccionar usuario buscador registrado
 		@RequestMapping("/seleccionarUR")
+		@Authorized(roles = {Authorized.REGISTRADO})
 		public String seleccionarUR(@RequestParam int idUsuarios, Model modelo) {
 			modelo.addAttribute("usuario", su.findById(idUsuarios).get());
 			modelo.addAttribute("anuncios", sa.findByIdUsuario(idUsuarios));
@@ -123,6 +128,7 @@ public class UsuarioController {
 	
 	//Mostrar los anuncios de un usuario usuRegistrado
 	@RequestMapping("/perfilR")
+	@Authorized(roles = {Authorized.REGISTRADO})
 	public String perfilUsu(Model modelo) {
 		modelo.addAttribute("anuncios", sa.findByUsuario());
 		modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
@@ -131,13 +137,14 @@ public class UsuarioController {
 	
 	//MODIFICAR perfil usuarioRegistrado
 		@RequestMapping("/modificarUsuR")
-		@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+		@Authorized(roles = {Authorized.REGISTRADO})
 		public String modificarUsuP(Model modelo) {
 			modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
 			return "usuRegistrado/formModificarUsu";
 		}
 	
 	@RequestMapping("/persistirR")
+	@Authorized(roles = {Authorized.REGISTRADO})
 	public String persistirR (@ModelAttribute UsuarioVO usuario) {
 		su.save(usuario);
 		return "redirect:/usuarios/perfilR";
@@ -147,6 +154,7 @@ public class UsuarioController {
 	//USU ADMIN
 	//seleccionar usuario buscador admin
 			@RequestMapping("/seleccionarUA")
+			@Authorized(roles = {Authorized.ADMIN})
 			public String seleccionarUA(@RequestParam int idUsuarios, Model modelo) {
 				modelo.addAttribute("usuario", su.findById(idUsuarios).get());
 				modelo.addAttribute("anuncios", sa.findByIdUsuario(idUsuarios));
@@ -157,6 +165,7 @@ public class UsuarioController {
 		
 		//Mostrar los anuncios de un usuario usuAdmin
 		@RequestMapping("/perfilA")
+		@Authorized(roles = {Authorized.ADMIN})
 		public String perfilUsuA(Model modelo) {
 			modelo.addAttribute("anuncios", sa.findByUsuario());
 			modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
@@ -165,13 +174,14 @@ public class UsuarioController {
 		
 		//MODIFICAR perfil usuAdmin
 			@RequestMapping("/modificarUsuA")
-			@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+			@Authorized(roles = {Authorized.ADMIN})
 			public String modificarUsuA(Model modelo) {
 				modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
 				return "usuAdmin/formModificarUsu";
 			}
 		
 		@RequestMapping("/persistirA")
+		@Authorized(roles = {Authorized.ADMIN})
 		public String persistirA (@ModelAttribute UsuarioVO usuario) {
 			su.save(usuario);
 			return "redirect:/usuarios/perfilA";
@@ -179,6 +189,7 @@ public class UsuarioController {
 		
 	//CRUD ADMIN
 		@RequestMapping("/insertaCrudA")
+		@Authorized(roles = {Authorized.ADMIN})
 		public String insertaCrudA(Model modelo) {
 			modelo.addAttribute("usuario", new UsuarioVO());
 			
@@ -186,6 +197,7 @@ public class UsuarioController {
 		}
 		
 		@RequestMapping("/persistirCrudA")
+		@Authorized(roles = {Authorized.ADMIN})
 		public String persistirCrudA (@ModelAttribute UsuarioVO usuario) {
 			su.save(usuario);
 			return "redirect:/usuarios/";
@@ -194,7 +206,7 @@ public class UsuarioController {
 			
 		//MODIFICAR usu en crud Admin
 				@RequestMapping("/modificarCrudA")
-				@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+				@Authorized(roles = {Authorized.ADMIN})
 				public String modificarCrudA(@RequestParam int idUsuarios, Model modelo) {
 					modelo.addAttribute("usuario", su.findById(idUsuarios).get());
 					return "usuarios/formModificar";

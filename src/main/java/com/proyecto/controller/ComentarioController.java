@@ -66,7 +66,7 @@ public class ComentarioController {
 	
 //INSERTAR anuncio usuarioRegistrado
 	@RequestMapping("/insertarR")
-	@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+	@Authorized(roles = {Authorized.REGISTRADO})
 	public String insertaR(@ModelAttribute ComentarioVO comentario, @RequestParam int idProductos) {
 		sco.save(comentario, idProductos);
 		return "redirect:/anuncios/seleccionarR?idProductos=" + idProductos;
@@ -74,7 +74,7 @@ public class ComentarioController {
 
 	//INSERTAR anuncio usuAdmin
 		@RequestMapping("/insertarA")
-		@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+		@Authorized(roles = {Authorized.ADMIN})
 		public String insertaA(@ModelAttribute ComentarioVO comentario, @RequestParam int idProductos) {
 			sco.save(comentario, idProductos);
 			return "redirect:/anuncios/seleccionarA?idProductos=" + idProductos;
