@@ -42,7 +42,7 @@
         <div class="cardP" th:each="anuncio :${anuncios}">
         <a th:href="@{/anuncios/seleccionar(idProductos=${anuncio.idProductos})}">
             <div class="card-headerP">
-                <img th:src="@{${ '/' + anuncio.urlImg}}" alt="rover" />
+                <img th:src="@{${anuncio.urlImg}}" alt="rover" />
             </div>
             <div class="card-body">
             	<div class="encabezado">
