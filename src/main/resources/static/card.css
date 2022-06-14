@@ -20,7 +20,7 @@ body {
 /*HEADER - NAV*/
 header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; 
     /*space-between*/
     /*flex-end: derecha*/
     width: 100%;
@@ -28,6 +28,8 @@ header {
     align-items: center;
     padding: 25px 10%;
     background-color: #242F9B;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    min-width: 655px;
 }
 
 
@@ -139,7 +141,7 @@ button:hover {
 /*categorias*/
 /**/
 .contenedor0 {
-  width: 40%; 
+  width: 30%; 
   margin: 5% auto 0 auto;
   background-color: subtle-white;
   max-width: 800px;
@@ -161,7 +163,13 @@ button:hover {
     font-family: "Roboto", sans-serif;
     list-style-type: none;
     
+    
 }
+
+.categorias .fa-solid {
+	font-size:18px;
+}
+
 .categorias li {
 	display: inline-block;
     padding: 15px;
@@ -170,7 +178,7 @@ button:hover {
 }
 
 .categorias li:hover {
-	background-color: gray;
+	background-color: #646FD4;
 	border-radius: 10px;
 }
 
@@ -228,16 +236,18 @@ article{
 }
 
 .encabezado .fa-solid {
-	color:black;
+	color: #646FD4;
 	margin-right: 10px;
+	transition: all 0.3s ease 0s;
 }
 
 .encabezado .fa-solid:hover {
-	color:gray;
+	 color: #9BA3EB;
 }
 
+
 .precio {
-    background-color: #47bcd4;
+    background-color: #9BA3EB;
     border-radius: 50px;
     font-size: 1em;
     color: #fff;
@@ -280,4 +290,42 @@ article{
 
 .user-info small {
     color: #545d7a;
+}
+
+.titulo, .tituloA1, .tituloA2, .tituloU1, .tituloU2 {
+	text-align:center;
+	margin-top:50px;
+}
+
+@media (max-width:655px) {
+	/*header{
+		background-color: gray;
+		height: 350px;
+		
+		justify-content: none;
+		align-items: none;
+		flex-wrap: wrap; 
+	} 
+	
+	
+	header .botonR{
+	display: block
+	}
+	
+	.cajaBuscador {
+	display:block;
+	}
+	
+	nav {
+	display:block
+	}
+	
+	li {
+	display:inline-block;
+	}
+	
+	
+	i {
+	display: block;
+	} */
 }

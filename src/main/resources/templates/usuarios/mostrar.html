@@ -2,15 +2,33 @@
 <html xmlns:th="www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>CRUD Usuarios</title>
+ <link rel="icon" type="image/x-icon" href="/images/IconHome.png">
 <link rel="stylesheet" href="../crud.css">
+<link rel="stylesheet" href="../fontawesome_listo/css/all.css">
 </head>
 <body>
 
-	<h1>CRUD Usuarios</h1>
+<!-- encabezado -->
+	<header th:replace="fragmentos/usuAdmin/frag_header ::header"></header>
+	
+
+
+	
+	<div class="contenedor0">
+		<ul class="cruds">
+                <a th:href="@{/anuncios/}"><li> <i class="fa-solid fa-bullhorn"></i> Anuncios</li></a>
+                <a th:href="@{/usuarios/}"> <li> <i class="fa-solid fa-users"></i> Usuarios</li> </a>
+                <a th:href="@{/comentarios/}"> <li> <i class="fa-solid fa-comments"></i> Comentarios</li></a>
+             </tr>
+    	</ul>
+	</div>
+	
+
+	<h2 class="titulo">CRUD Usuarios</h2>
 
 <div class="contenedor">
-	<a class="insertar" th:href="@{/usuarios/inserta}"> Inserta usuario</a>
+	<a class="insertar" th:href="@{/usuarios/insertaCrudA}"> Inserta usuario</a>
 	<table class="tabla">
 		<tr class="titulos">
 			<th>Nombre</th>
@@ -26,7 +44,7 @@
 			<td data-label="Teléfono" th:text="${usuario.telefono}"></td>
 			<td data-label="Fecha Creación" th:text="${usuario.fechaCreacion}"></td>
 			<td class="eliminar"> <a th:href="@{/usuarios/eliminar(idUsuarios=${usuario.idUsuarios})}">Eliminar</a> </td>
-			<td class="modificar"> <a th:href="@{/usuarios/modificar(idUsuarios=${usuario.idUsuarios})}">Modificar</a> </td>
+			<td class="modificar"> <a th:href="@{/usuarios/modificarCrudA(idUsuarios=${usuario.idUsuarios})}">Modificar</a> </td>
 		</tr>
 	</table>
 	

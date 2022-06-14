@@ -2,58 +2,150 @@
 <html xmlns:th="www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Selección - RePlay</title>
+ <link rel="icon" type="image/x-icon" href="/images/IconHome.png">
 <link rel="stylesheet" href="../fontawesome_listo/css/all.css">
 <link href="../cardSeleccion.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<header>
-        <!-- <img class="logo" src="images/logo.jpg" alt="logo"> -->
-        <a class="logo" th:href="@{/Home/R}"> <p>hola</p> </a>
-        <nav>
-            <ul class="nav">
-            	<li class="cajaBuscador"> <form th:action="@{/anuncios/buscarR}" class="formBuscador" 
-            		th:object="${anuncio}">
-                <input class="textoBuscador" type="search" placeholder="Busca ..." name="query">
-                <button class="botonBuscador" type="submit">
-                    <i class="fa fa-search"
-                        style="font-size: 18px;">
-                    </i>
-                </button>
-            </form> </li>
-                <!-- <li><a href="#">Inicio</a></li> -->
-                   <li><a href="#"><i class="fa-solid fa-heart"></i></a></li>
-                <li class="new"><a th:href="@{/anuncios/inserta}">+</a></li>
-                <li><a href="#"><i class="fa-solid fa-circle-user"></i></a></li>
-                <li><a href="#"><i class="fa-solid fa-circle-xmark"></i></a></li> 
-                <!--  <a th:href="@{/anuncios/inserta}"><li class="new">+</a>  -->
-            </ul>
-        </nav>
-        <!-- <a class="botonR" th:href="@{/usuarios/inserta}"><button>Registrate</button></a> 
-        <a class="botonR" ><button>Iniciar Sesión</button></a>  -->
-    </header>
+	<!-- encabezado -->
+	<header th:replace="fragmentos/usuAdmin/frag_header ::header"></header>
 
 	<article>
 	  <div class="container">
         <div class="card">
             <div class="card-header">
-                <img src="https://c0.wallpaperflare.com/preview/483/210/436/car-green-4x4-jeep.jpg" alt="rover" />
+               <img th:src="@{${ '/' + anuncio.urlImg}}" alt="img" />
             </div>
             <div class="card-body">
+            <div class="encabezado">
                 <span class="precio" th:text="${anuncio.precio}"></span>
-                <h4 th:text="${anuncio.nombre}"></h4>
-                <p th:text="${anuncio.descripcion}"></p>
-                <!--  <a th:href="@{/anuncios/seleccionar(idProductos=${anuncio.idProductos})}">Ver Producto</a> -->
+                <div th:switch="${anuncio.precio}">
+                		<a th:case="*" th:href="@{/anuncios/likeA(idProductos=${anuncio.idProductos})}"><i class="fa-solid fa-heart"></i></a>
+                		<a th:case="2" th:href="@{/anuncios/likeA(idProductos=${anuncio.idProductos})}"><i class="fa-regular fa-heart"></i></a>
+                		<a th:case="1" th:href="@{/anuncios/likeA(idProductos=${anuncio.idProductos})}"><i class="fa-solid fa-heart-crack"></i></a>
+                	</div>
+            </div>
+                <h3 th:text="${anuncio.nombre}"></h3>
+                <p th:text="${anuncio.categoria}"></p>
+                <p th:text="${anuncio.estado}"></p>
+                <p class="descripcion" th:text="${anuncio.descripcion}"></p>
                 <div class="user">
-                    <img src="https://yt3.ggpht.com/a/AGF-l7-0J1G0Ue0mcZMw-99kMeVuBmRxiPjyvIYONg=s900-c-k-c0xffffffff-no-rj-mo" alt="user" />
+                    <img src="/images/UserIcon.png" alt="user" />
                     <div class="user-info">
-                        <h5>July Dec</h5>
-                        <small>2h ago</small>
+                        <h5 th:text="${anuncio.usuario.nombre}"></h5> 
                     </div>
                 </div>
             </div>
         </div>
        </div>
     </article>
+    
+  
+    
+    <!--  si hay comentarios -->
+    <div th:if="${comentarios.size}"> <!-- si tiene = true -->
+	
+	  <article>
+	  <div class="container">
+        <div class="card">
+            
+            <div class="card-body">
+            <span>Comentarios</span>
+            
+             
+           		 
+				  
+			        <div class="cardComentario" th:each="comentario :${comentarios}">
+			        <img src="/images/UserIcon.png" alt="user" width="40px" height="40px"/>
+			        
+			        <div class="nombre"> <span  th:text="${comentario.usuario.nombre}"/></span>  </div>
+			        
+                   	<div class="fecha"> <span  th:text="${comentario.fecha}"/> </span> </div>
+                   
+			        
+		               	   <div class="texto"><span th:text="${comentario.texto}"/></div>
+               			 
+               			
+			       </div>
+			     
+            
+            </div>
+        </div>
+       </div>
+       
+      
+    </article>
+    
+    <article>
+	  <div class="containerInsertar">
+        <div class="card">
+            
+            <div class="card-bodyInsertar">
+                <form class="form" th:action="@{/comentarios/insertarA}" th:object="${comentario}" method="POST">
+	                <textarea name="texto" rows="2" cols="50" placeholder="Escribe tu comentario..."></textarea>
+	                <input type="hidden" id="idProductos" name="idProductos" th:value="${anuncio.idProductos}"/>
+	                <button type="submit">Enviar</button>
+                </form>
+                
+            </div>
+        </div>
+       </div>
+       
+      
+    </article>    
+
+    </div>
+    
+    
+    <!-- si no hay comentarios -->
+    <div th:unless="${comentarios.size}"> <!-- si no tiene = false -->
+    
+  
+	
+	  <article>
+	  <div class="container">
+        <div class="card">
+            
+            <div class="card-body">
+            <span>Sin Comentarios</span>
+            
+             
+            
+            </div>
+        </div>
+       </div>
+       
+      
+    </article>
+    
+     </article>
+    
+    <article>
+	  <div class="containerInsertar">
+        <div class="card">
+            
+            <div class="card-bodyInsertar">
+            <span>Inserte un comentario</span>
+                <form class="form" th:action="@{/comentarios/insertarA}" th:object="${comentario}" method="POST">
+	                <textarea name="texto" rows="20" cols="50">Escribe aquí tus comentarios</textarea>
+	                <input type="hidden" id="idProductos" name="idProductos" th:value="${anuncio.idProductos}"/>
+	                <button class="boton" type="submit">Enviar</button>
+                </form>
+                
+            </div>
+        </div>
+       </div>
+       
+      
+    </article>    
+    
+    
+    </div>
+    
+    
+    
+    
+    
     </body>
 </html>

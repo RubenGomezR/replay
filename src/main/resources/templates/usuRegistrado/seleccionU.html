@@ -2,24 +2,17 @@
 <html xmlns:th="www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Selección - RePlay</title>
+ <link rel="icon" type="image/x-icon" href="/images/IconHome.png">
+<link rel="stylesheet" href="../fontawesome_listo/css/all.css">
 <link href="../cardSeleccion.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-	<header>
-        <!-- <img class="logo" src="images/logo.jpg" alt="logo"> -->
-        <a class="logo" th:href="@{/Home}"> <p>hola</p> </a> 
-        <nav>
-            <ul class="nav">
-                <!-- <li><a href="#">Inicio</a></li> -->
-                <!-- <li><a href="#"><i class="fa-solid fa-heart"></i></a></li>
-                <li class="añadir"><a href="#">+</a></li> -->
-            </ul>
-        </nav>
-        <a class="botonR" th:href="@{/usuarios/inserta}"><button>Registrate</button></a> 
-        <a class="botonR" ><button>Iniciar Sesión</button></a>
-    </header>
-
+	<!-- encabezado -->
+	<header th:replace="fragmentos/usuRegistrado/frag_header ::header"></header>
+    
+    
+  
 	
     <!-- Usuario -->
     <article>
@@ -55,29 +48,23 @@
             <div class="card-body">
             	<div class="encabezado">
                 	<span class="precio" th:text="${anuncio.precio}"></span>
-                	<!--  <a th:href="@{/anuncios/inserta}"><i class="fa-solid fa-heart"></i></a> -->
-                	<a th:href="@{/anuncios/modificarR(idProductos=${anuncio.idProductos})}"><i class="fa-solid fa-gear"></i></a>
-                	<a th:href="@{/anuncios/eliminarR(idProductos=${anuncio.idProductos})}"><i class="fa-solid fa-xmark"></i></a>
-                	
+                	<div th:switch="${anuncio.precio}">
+                		<a th:case="*" th:href="@{/anuncios/like(idProductos=${anuncio.idProductos})}"><i class="fa-solid fa-heart"></i></a>
+                		<a th:case="2" th:href="@{/anuncios/like(idProductos=${anuncio.idProductos})}"><i class="fa-regular fa-heart"></i></a>
+                		<a th:case="1" th:href="@{/anuncios/like(idProductos=${anuncio.idProductos})}"><i class="fa-solid fa-heart-crack"></i></a>
+                	</div>
                 	
                 </div>
                 <h4 th:text="${anuncio.nombre}"></h4>
                 <p th:text="${anuncio.categoria}"></p>
                 <p th:text="${anuncio.estado}"></p>
                 <p th:text="${anuncio.descripcion}"></p>
-                <!--  <a th:href="@{/anuncios/seleccionar(idProductos=${anuncio.idProductos})}">Ver Producto</a> -->
-                <!--  
-                <div class="user">
-                    <img src="https://yt3.ggpht.com/a/AGF-l7-0J1G0Ue0mcZMw-99kMeVuBmRxiPjyvIYONg=s900-c-k-c0xffffffff-no-rj-mo" alt="user" />
-                    <div class="user-info">
-                        <h5>July Dec</h5>
-                        <small>2h ago</small>
-                    </div>
-                </div> -->
+                
             </div>
             </a>
         </div>
        </div>
        </article>
     
+    </body>
 </html>

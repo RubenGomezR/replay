@@ -48,6 +48,7 @@ public class AnuncioController {
 	@RequestMapping("")
 	public String mostrar(Model modelo) {
 		modelo.addAttribute("anuncios", sa.findAll());
+		modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
 		
 		return "anuncios/mostrar";
 	}
@@ -192,6 +193,7 @@ public class AnuncioController {
 	@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
 	public String insertaR(Model modelo) {
 		modelo.addAttribute("anuncio", new AnuncioVO());
+		modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
 		
 		return "usuRegistrado/formInserta";
 	}
@@ -201,8 +203,13 @@ public class AnuncioController {
 	@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
 	public String modificarP(@RequestParam int idProductos, Model modelo) {
 		modelo.addAttribute("anuncio", sa.findById(idProductos));
+		modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
 		return "usuRegistrado/formModificar";
 	}
+	
+	
+	
+	
 	
 	@RequestMapping("/persistirR")
 	@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
@@ -238,15 +245,143 @@ public class AnuncioController {
 	
 	
 	
-	@GetMapping(value ="/buscarNOP")
-	public String buscar(Model modelo, @RequestParam (value="query", required = false)String q) {
-		try {
-			List<AnuncioVO> anuncios = this.sa.findByAnuncio(q);
-			return "/usuAnonimo/buscar2";
-		}catch (Exception e) {
-			modelo.addAttribute("error", e.getMessage());
-			return "error";
+	//USU ADMIN
+	/*categorias usuRegistrado*/
+	//Les pasamos las constantes declaradas en CategoryEnum
+	
+	@RequestMapping("/VideojuegosA")
+	@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+	public String buscarCategoriaVA(Model modelo) {
+		modelo.addAttribute("anuncios", sa.findByCategoria(CategoryEnum.VIDEOJUEGOS.getcategoria()));
+		modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
+		return "usuAdmin/paginaCategoriaEspc";
+		}
+	
+	@RequestMapping("/ConsolasA")
+	@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+	public String buscarCategoriaCA(Model modelo) {
+		modelo.addAttribute("anuncios", sa.findByCategoria(CategoryEnum.CONSOLAS.getcategoria()));
+		modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
+		return "usuAdmin/paginaCategoriaEspc";
+		}
+	
+	@RequestMapping("/PC GamingA")
+	@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+	public String buscarCategoriaPA(Model modelo) {
+		modelo.addAttribute("anuncios", sa.findByCategoria(CategoryEnum.PC_GAMING.getcategoria()));
+		modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
+		return "usuAdmin/paginaCategoriaEspc";
+		}
+	
+	@RequestMapping("/AccesoriosA")
+	@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+	public String buscarCategoriaAA(Model modelo) {
+		modelo.addAttribute("anuncios", sa.findByCategoria(CategoryEnum.ACCESORIOS.getcategoria()));
+		modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
+		return "usuAdmin/paginaCategoriaEspc";
+		}
+	
+	/*buscar usuAdmin*/
+	@GetMapping("/buscarA")
+	@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+	public String buscar2A(@RequestParam String query, Model modelo) {
+		modelo.addAttribute("anuncios", sa.findByAnuncio(query));
+		modelo.addAttribute("usuarios", su.findByNombre(query));
+		modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
+		return "usuAdmin/buscar2";
+		}
+	
+	/* seleccionar usuAdmin*/
+	@RequestMapping("/seleccionarA")
+	@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+	public String seleccionarA(@RequestParam int idProductos, Model modelo) {
+		modelo.addAttribute("anuncio", sa.findById(idProductos));
+		modelo.addAttribute("comentarios", sco.getByIdAnuncio(idProductos));
+		modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
+		return "usuAdmin/seleccion";
+		}
+	
+	
+	//Ir PaginaLikes usuAdmin
+		@RequestMapping("/paginaLikesA")
+		@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+		public String paginaLikesA(Model modelo) {
+			modelo.addAttribute("anuncios", sa.findAllLikesR());
+			modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
+			return "usuAdmin/paginaLikesR";
 		}
 		
-	} 
+		//INSERTAR anuncio usuAdmin
+		@RequestMapping("/insertaA")
+		@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+		public String insertaA(Model modelo) {
+			modelo.addAttribute("anuncio", new AnuncioVO());
+			modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
+			
+			return "usuAdmin/formInserta";
+		}
+		
+		//MODIFICAR anuncio usuAdmin
+		@RequestMapping("/modificarA")
+		@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+		public String modificarA(@RequestParam int idProductos, Model modelo) {
+			modelo.addAttribute("anuncio", sa.findById(idProductos));
+			modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
+			return "usuAdmin/formModificar";
+		}
+		
+		
+		
+		@RequestMapping("/persistirA")
+		@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+		public String persistirPA (@RequestParam("file") MultipartFile file, @ModelAttribute AnuncioVO anuncio) {
+			sa.save(anuncio, file);
+			return "redirect:/usuarios/perfilA";
+		}
+		
+		//ELIMINAR usuarioRegistrado
+		@RequestMapping("/eliminarA")
+		public String eliminarPA(@RequestParam int idProductos) {
+			sa.deleteById(idProductos);
+			return "redirect:/usuarios/perfilA";
+		}
+		
+		
+		//AÑADIR A LIKES usuarioRegistrado
+		@RequestMapping("/likeA")
+		@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+		public String likeA(@RequestParam int idProductos, Model model) {
+			sau.saveLike(idProductos);
+			return "redirect:/Home/A";
+		}
+		
+		
+		//crud
+
+		//añadir
+		//INSERTAR 
+		@RequestMapping("/insertaCrudA")
+		@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+		public String insertaCrudA(Model modelo) {
+			modelo.addAttribute("anuncio", new AnuncioVO());
+			modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
+					return "anuncios/formInserta2";
+		}
+		
+		//MODIFICAR anuncio usuarioRegistrado
+		@RequestMapping("/modificarCrudA")
+		@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+		public String modificarCrudA(@RequestParam int idProductos, Model modelo) {
+			modelo.addAttribute("anuncio", sa.findById(idProductos));
+			modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
+			return "anuncios/formModificar2";
+		}
+		
+		//persistir
+		@RequestMapping("/persistirCrudA")
+		@Authorized(roles = {Authorized.ADMIN, Authorized.REGISTRADO})
+		public String persistirCrudA (@RequestParam("file") MultipartFile file, @ModelAttribute AnuncioVO anuncio) {
+			sa.save(anuncio, file);
+			return "redirect:/anuncios";
+		}
 }

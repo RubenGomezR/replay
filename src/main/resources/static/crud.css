@@ -1,10 +1,145 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap');
 * {
     box-sizing: border-box;
     color: inherit;
     text-decoration: none;
     
 }
+
+
+body {
+    margin: 0;
+    background-color: #f7f8fc;
+    font-family: "Roboto", sans-serif;
+    color: #10182f;
+    
+}
+
+
+/*HEADER - NAV*/
+header {
+	font-family: "Roboto", sans-serif;
+    display: flex;
+    justify-content: space-between;
+    /*space-between*/
+    /*flex-end: derecha*/
+    width: 100%;
+    height: 80px;
+    align-items: center;
+    padding: 25px 10%;
+    background-color: #242F9B;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    min-width: 655px;
+}
+
+
+
+li,
+a,
+button {
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+    color: white;
+}
+
+.logo {
+    cursor: pointer;
+    margin-right: auto;
+    color: azure;
+    font-family: 'Kdam Thmor Pro', sans-serif;
+    font-size:1.3em;
+}
+
+.nav {
+    list-style: none;
+}
+
+.nav li {
+    display: inline-block;
+    padding: 0px 15px;
+    margin-left: 5px;
+}
+
+.nav li a {
+    transition: all 0.3s ease 0s;
+}
+
+.nav li a:hover :not(.añadir,
+.fa-solid) {
+    color: coral;
+}
+
+/*buscador*/
+.cajaBuscador {
+	margin: auto;
+}
+
+.cajaBuscador input {
+	height: 32px;
+	border-radius: 10px;
+	border:none;
+	color: black;
+}
+
+
+/*boton nuevo anuncio*/
+.new {
+    background-color: #5FB8FF;
+    border: 3px solid white;
+    border-radius: 100%;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    transition: all 0.2s linear;
+    cursor: pointer;
+}
+
+.new a {
+    font-family: "Roboto", sans-serif;
+    font-size: 1.4em;
+    color: white;
+    line-height: 30px;
+    position: relative;
+    right: 5px;
+}
+
+.new:hover {
+    background-color: #4661F5;
+    color: white;
+    border-radius: 20%;
+}
+
+.fa-solid {
+    color: white;
+    font-size: 1.6em;
+    transition: all 0.3s ease 0s;
+}
+
+.fa-solid:hover {
+   color: #9BA3EB;
+}
+
+header button {
+    padding: 9px 25px;
+    margin-left: 20px;
+    border: none;
+    background: #9BA3EB;
+    color: #fff;
+    box-shadow: 0 6px #646FD4;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    transition: all 0.3s;
+    
+}
+
+button:hover {
+    background-color: #646FD4;
+    cursor: pointer;
+}
+
+
 
 
 /**/
@@ -18,10 +153,10 @@
   
 }
 
+
 .cruds{
 	margin: 0 auto;
-    border: 1px solid #ccc;
-    background-color: #A2A19B;
+   background-color: #9BA3EB;
     border-radius: 10px;
     width: 100%;
     margin-top: 50px;
@@ -32,6 +167,10 @@
     
 }
 
+.cruds .fa-solid {
+	font-size:18px;
+}
+
 .cruds li {
 	display: inline-block;
       padding: 15px;
@@ -39,9 +178,12 @@
 }
 
 .cruds li:hover {
-	background-color: gray;
+	background-color: #646FD4;
 	border-radius: 10px;
 }
+
+
+
 
 /*crud*/
 .contenedor {
@@ -127,13 +269,15 @@
     cursor: pointer;
 }
 
+.titulo {
+	text-align:center;
+	margin-top:50px;
+}
+
 
 /*media*/
 
 @media (max-width:1080px) {
-	.contenedor{
-		max-width: 345px;
-	}
 	
     .tabla {
         border: 0;

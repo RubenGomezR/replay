@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.proyecto.Session;
 import com.proyecto.enums.RolEnum;
+import com.proyecto.modelo.AnuncioVO;
 import com.proyecto.modelo.RolVO;
 import com.proyecto.modelo.UsuarioVO;
 import com.proyecto.repositorio.RolRepository;
@@ -201,8 +202,9 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	@Override
 	public List<UsuarioVO> findByNombre(String nombre) {
 		// TODO Auto-generated method stub
-		return ur.findByNombre(nombre);
-	}
+		return ur.findByNombreLike(nombre);
+	}	
+	
 	
 	public boolean login(String correo, String contrasena) {
 		boolean isLogged = false;
@@ -228,5 +230,6 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 	public void logout() {
 		session.logout();
 	}
+
 	
 }

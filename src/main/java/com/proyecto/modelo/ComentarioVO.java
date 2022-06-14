@@ -29,7 +29,7 @@ public class ComentarioVO {
 	private int idComentarios;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private LocalDate fecha;
-	@Column(length=45)
+
 	private String texto;
 	
 	@ManyToOne

@@ -27,12 +27,14 @@ public class FilterSecurity implements Filter  {
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		 
 		
+		//Cojemos el valor de si esta logeado o no (True o False)
 		boolean isLogged = session.isLogged();
 		
+		//Comprobamos si esta logeado (True) y si tiene los permisos básicos
 		if (isLogged || checkPermissionsUri((HttpServletRequest) request)) {
-			chain.doFilter(request, response);
+			chain.doFilter(request, response);  //accede
 		} else {
-			httpResponse.sendRedirect("/usuarios/login");
+			httpResponse.sendRedirect("/usuarios/login"); //sino le llevamos a login
 		}
 	}
 	
@@ -47,7 +49,7 @@ public class FilterSecurity implements Filter  {
 				|| httpServletRequest.getRequestURI().equals("/usuarios/inserta") || httpServletRequest.getRequestURI().equals("/anuncios/Videojuegos") 
 				|| httpServletRequest.getRequestURI().equals("/anuncios/Consolas") || httpServletRequest.getRequestURI().equals("/anuncios/PC_Gaming")
 				|| httpServletRequest.getRequestURI().equals("/anuncios/Accesorios") || httpServletRequest.getRequestURI().equals("/anuncios/buscar") 
-				|| httpServletRequest.getRequestURI().equals("/anuncios/seleccionar");
+				|| httpServletRequest.getRequestURI().equals("/anuncios/seleccionar") || httpServletRequest.getRequestURI().equals("/usuarios/seleccionarU");
 	}
 
 	

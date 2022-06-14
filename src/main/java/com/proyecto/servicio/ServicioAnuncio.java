@@ -87,5 +87,7 @@ public interface ServicioAnuncio {
 	List<AnuncioVO> findAllAnunciosAjenos();
 	
 	List<AnuncioVO> findAllLikesR();
+	
+	List<AnuncioVO> findByIdUsuario(Integer idUsuario);
 
 }

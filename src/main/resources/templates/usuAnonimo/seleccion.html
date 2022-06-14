@@ -22,11 +22,10 @@
             </div>
             <div class="card-body">
                 <span class="precio" th:text="${anuncio.precio}"></span>
-                <h4 th:text="${anuncio.nombre}"></h4>
+                <h3 th:text="${anuncio.nombre}"></h3>
                 <p th:text="${anuncio.categoria}"></p>
                 <p th:text="${anuncio.estado}"></p>
-                <p th:text="${anuncio.descripcion}"></p>
-                <!--  <a th:href="@{/anuncios/seleccionar(idProductos=${anuncio.idProductos})}">Ver Producto</a> -->
+                <p class="descripcion" th:text="${anuncio.descripcion}"></p>
                 <div class="user">
                     <img src="/images/UserIcon.png" alt="user" />
                     <div class="user-info">
@@ -37,5 +36,71 @@
         </div>
        </div>
     </article>
+    
+    
+   	<!-- COMENTARIOS -->
+    
+     <!--  si hay comentarios -->
+    <div th:if="${comentarios.size}"> <!-- si tiene = true -->
+	
+	  <article>
+	  <div class="container">
+        <div class="card">
+            
+            <div class="card-body">
+            <span>Comentarios</span>
+            
+             
+           		 
+				  
+			        <div class="cardComentario" th:each="comentario :${comentarios}">
+			        <img src="/images/UserIcon.png" alt="user" width="40px" height="40px"/>
+			        
+			        <div class="nombre"> <span  th:text="${comentario.usuario.nombre}"/></span>  </div>
+			        
+                   	<div class="fecha"> <span  th:text="${comentario.fecha}"/> </span> </div>
+                   
+			        
+		               	   <div class="texto"><span th:text="${comentario.texto}"/></div>
+               			 
+               			
+			       </div>
+			     
+            
+            </div>
+        </div>
+       </div>
+       
+      
+    </article>
+    
+      
+
+    </div>
+    
+    
+    <!-- si no hay comentarios -->
+    <div th:unless="${comentarios.size}"> <!-- si no tiene = false -->
+    
+  
+	
+	  <article>
+	  <div class="container">
+        <div class="card">
+            
+            <div class="card-body">
+            <span>Sin Comentarios</span>
+            
+             
+            
+            </div>
+        </div>
+       </div>
+       
+      
+    </article>
+    
+    </div>
+    
     </body>
 </html>

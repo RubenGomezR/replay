@@ -16,7 +16,7 @@
 	  <div class="container">
         <div class="card">
             <div class="card-header">
-               <img th:src="@{${ '/' + anuncio.urlImg}}" alt="rover" />
+               <img th:src="@{${anuncio.urlImg}}" alt="img" />
             </div>
             <div class="card-body">
             <div class="encabezado">
@@ -27,10 +27,10 @@
                 		<a th:case="1" th:href="@{/anuncios/like(idProductos=${anuncio.idProductos})}"><i class="fa-solid fa-heart-crack"></i></a>
                 	</div>
             </div>
-                <h4 th:text="${anuncio.nombre}"></h4>
+                <h3 th:text="${anuncio.nombre}"></h3>
                 <p th:text="${anuncio.categoria}"></p>
                 <p th:text="${anuncio.estado}"></p>
-                <p th:text="${anuncio.descripcion}"></p>
+                <p class="descripcion" th:text="${anuncio.descripcion}"></p>
                 <!--  <a th:href="@{/anuncios/seleccionar(idProductos=${anuncio.idProductos})}">Ver Producto</a> -->
                 <div class="user">
                     <img src="/images/UserIcon.png" alt="user" />
@@ -43,21 +43,34 @@
        </div>
     </article>
     
-    <article>
+  
+    
+    <!--  si hay comentarios -->
+    <div th:if="${comentarios.size}"> <!-- si tiene = true -->
+	
+	  <article>
 	  <div class="container">
         <div class="card">
             
             <div class="card-body">
             <span>Comentarios</span>
             
-            <article>
-				  <div class="container">
-			        <div class="card" th:each="comentario :${comentarios}">
-		               	 <span th:text="${comentario.usuario.nombre}"/>  
-               			 <span th:text="${comentario.texto}"/>
-               			 <span th:text="${comentario.fecha}"/> 
+             
+           		 
+				  
+			        <div class="cardComentario" th:each="comentario :${comentarios}">
+			        <img src="/images/UserIcon.png" alt="user" width="40px" height="40px"/>
+			        
+			        <div class="nombre"> <span  th:text="${comentario.usuario.nombre}"/></span>  </div>
+			        
+                   	<div class="fecha"> <span  th:text="${comentario.fecha}"/> </span> </div>
+                   
+			        
+		               	   <div class="texto"><span th:text="${comentario.texto}"/></div>
+               			 
+               			
 			       </div>
-			     </article>
+			     
             
             </div>
         </div>
@@ -71,11 +84,10 @@
         <div class="card">
             
             <div class="card-bodyInsertar">
-            <span>Inserte un comentario</span>
                 <form class="form" th:action="@{/comentarios/insertarR}" th:object="${comentario}" method="POST">
-	                <textarea name="texto" rows="5" cols="70">Escribe aquí tus comentarios</textarea>
+	                <textarea name="texto" rows="2" cols="50" placeholder="Escribe tu comentario..."></textarea>
 	                <input type="hidden" id="idProductos" name="idProductos" th:value="${anuncio.idProductos}"/>
-	                <button class="boton" type="submit"></button>
+	                <button type="submit">Enviar</button>
                 </form>
                 
             </div>
@@ -83,7 +95,59 @@
        </div>
        
       
+    </article>    
+
+    </div>
+    
+    
+    <!-- si no hay comentarios -->
+    <div th:unless="${comentarios.size}"> <!-- si no tiene = false -->
+    
+  
+	
+	  <article>
+	  <div class="container">
+        <div class="card">
+            
+            <div class="card-body">
+            <span>Sin Comentarios</span>
+            
+             
+            
+            </div>
+        </div>
+       </div>
+       
+      
     </article>
+    
+     </article>
+    
+    <article>
+	  <div class="containerInsertar">
+        <div class="card">
+            
+            <div class="card-bodyInsertar">
+            <span>Inserte un comentario</span>
+                <form class="form" th:action="@{/comentarios/insertarR}" th:object="${comentario}" method="POST">
+	                <textarea name="texto" rows="2" cols="50" placeholder="Escribe tu comentario..."></textarea>
+	                <input type="hidden" id="idProductos" name="idProductos" th:value="${anuncio.idProductos}"/>
+	                <button class="boton" type="submit">Enviar</button>
+                </form>
+                
+            </div>
+        </div>
+       </div>
+       
+      
+    </article>    
+    
+    
+    </div>
+    
+    
+    
+    
     
     </body>
 </html>

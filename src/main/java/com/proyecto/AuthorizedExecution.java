@@ -31,7 +31,7 @@ public class AuthorizedExecution {
 			try {
 				result = (Object) proceedingJoinPoint.proceed();
 			} catch (Throwable e) {
-				System.out.println("Error al continuar con la ejecución normal del programa pero los Roles son correctos.");
+				System.out.println("Error al continuar con la ejecución normal del programa pero los Roles son correctos." + e.getMessage());
 			}
 		} 
 		

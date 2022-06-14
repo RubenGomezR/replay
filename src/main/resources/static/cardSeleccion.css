@@ -28,6 +28,8 @@ header {
     align-items: center;
     padding: 25px 10%;
     background-color: #242F9B;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    min-width: 655px;
 }
 
 
@@ -162,6 +164,38 @@ article{
     flex-wrap: wrap;
 }
 
+.containerComentario{
+	margin-top: 5px;
+    display: flex;
+    width: 1040px;
+    height: 10px;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+
+.cardComentario {
+	
+	width: 98%;
+    margin: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    padding: 20px;
+   	position: relative;
+}
+
+
+.fecha{
+	color: gray;
+	font-size: 0.8em;
+}
+
+.texto{
+	margin-top:18px;
+	font-size: 1.1em;
+}
 
 
 .card {
@@ -173,6 +207,10 @@ article{
     width: 90%;
 }
 
+
+
+
+
 .card-header img {
     width: 100%;
     height: 450px;
@@ -181,15 +219,20 @@ article{
 
 .card-header .fa-solid{
 	position: relative;
-	right:-10px;
-	color:black;
+	right:-20px;
+	top: 20px;
+	color: #646FD4;
+    font-size: 1.6em;
+    transition: all 0.3s ease 0s;
+    margin-right: 10px;
 }
 
 .card-header .fa-solid:hover {
-	
-	color:gray;
-	
+  
+  color: #9BA3EB;
 }
+
+
 
 .cardP {
     margin: 10px;
@@ -209,10 +252,27 @@ article{
 .card-body {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+ 
     align-items: flex-start;
     padding: 20px;
     min-height: 250px;
+}
+
+.card-bodyU {
+    display: flex;
+    /*flex-direction: column;*/
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 20px;
+    min-height: 250px;
+}
+
+.card-bodyU div {
+	
+}
+
+.card-bodyU img{
+	margin-top: 20px;
 }
 
 .card-bodyInsertar{
@@ -233,13 +293,17 @@ article{
 .encabezado .fa-solid {
 	position: relative;
 	right: 220px;
-	color:black;
+	color: #646FD4;
 	margin-right: 10px;
 }
 
 .encabezado .fa-solid:hover {
-	color:gray;
+	color: #9BA3EB;
 }
+
+
+
+
 
 .tag {
     background: #cccccc;
@@ -253,7 +317,7 @@ article{
 }
 
 .precio {
-    background-color: #47bcd4;
+    background-color:  #9BA3EB;
     border-radius: 50px;
     font-size: 1em;
     color: #fff;
@@ -266,16 +330,40 @@ article{
     margin-right:350px;
 }
 
+/*euro*/
 .precio::after {
 	content:"\20AC";
 	
 }
 
 
-.card-body p {
-    font-size: 13px;
+.card-body2 {
+    display: flex;
+    flex-direction: column;
+ 
+    align-items: flex-start;
+    padding: 20px;
+    min-height: 250px;
+}
+
+.card-body2 p {
+    font-size: 13px; 
    /*margin: 0 0 40px; */
 }
+
+
+.card-body2 .fa-solid{
+	
+	color: #646FD4;
+    font-size: 1.6em;
+    transition: all 0.3s ease 0s;
+}
+
+.card-body2 .fa-solid:hover {
+  color: #9BA3EB;
+}
+
+
 
 .user {
     display: flex;
@@ -290,7 +378,7 @@ article{
 }
 
 .user-info h5 {
-    margin: 0;
+    margin-top: 12px;
 }
 
 .user-info small {
@@ -298,16 +386,45 @@ article{
 }
 
 
-.form .boton {
-    width: 40px;
-    padding: 10px;
-    margin: 16px 0px;
-    color: white;
-    font-size: 1.1em;
-    background-color: blue;
-    border: none;
+.titulo {
+	text-align:center;
+	margin-top:50px;
 }
 
-.form .boton:hover {
+.descripcion{
+	font-size: 1.1em;
+}
+
+textarea{
+	background-color:#f7f8fc;
+	border-radius:10px;
+	border: 2px solid transparent;
+	padding: 1em;
+	outline: none;
+	font-size: 15px;
+}
+
+.card-bodyInsertar button {
+	position: relative;
+	top: -28px;
+	margin-top: 32px;
+    padding: 9px 25px;
+    margin-left: 20px;
+    border: none;
+    background: #9BA3EB;
+    color: #fff;
+    box-shadow: 0 6px #646FD4;
+    height: 62px;
+    text-align: center;
+    border-radius: 5px;
+    transition: all 0.3s;
+    font-size: 1.1em;
+    
+}
+
+.card-bodyInsertar button:hover {
+    background-color: #646FD4;
     cursor: pointer;
 }
+
+

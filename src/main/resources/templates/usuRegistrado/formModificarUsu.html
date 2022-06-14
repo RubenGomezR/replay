@@ -15,7 +15,7 @@
     
 
 	
-	<form class="form" th:action="@{/usuarios/persistirCrudA}" method="post" th:object="${usuario}">
+	<form class="form" th:action="@{/usuarios/persistirR}" method="post" th:object="${usuario}">
 		<h5>MODIFICANDO USUARIO</h5>
 		<input class="campos" type="text" name="nombre" th:field="*{nombre}">
 		<input class="campos" type="text" name="nombre" th:field="*{correo}">

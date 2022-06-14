@@ -16,16 +16,11 @@
                     </i>
                 </button>
             </form> </li>
-                <!-- <li><a href="#">Inicio</a></li> -->
-                <li><a th:href="@{/anuncios/paginaLikesR}"><i class="fa-solid fa-heart"></i></a></li>
-                <li class="new"><a th:href="@{/anuncios/insertaR}">+</a></li> 
-                <li><a th:href="@{/usuarios/perfilR}"><i class="fa-solid fa-circle-user"></i> </a></li>
+                <li><a th:href="@{/anuncios/paginaLikesR}" title="Mis Likes"><i class="fa-solid fa-heart"></i></a></li>
+                <li class="new"><a th:href="@{/anuncios/insertaR}" title="Crear Anuncio">+</a></li> 
+                <li><a th:href="@{/usuarios/perfilR}" title="Ver Perfil"><i class="fa-solid fa-circle-user"></i> </a></li>
                 <li><p th:text="${usuario.nombre}"></p></li>
-                
-                <li><a th:href="@{/usuarios/logout}"><i class="fa-solid fa-circle-xmark"></i></a></li>
-                <!--  <a th:href="@{/anuncios/inserta}"><li class="new">+</a>  -->
+                <li><a th:href="@{/usuarios/logout}"><i class="fa-solid fa-arrow-right-from-bracket" title="Cerrar Sesión"></i></a></li>
             </ul>
         </nav>
-        <!--  <a class="botonR" th:href="@{/usuarios/inserta}"><button>Registrate</button></a> 
-        <a class="botonR" ><button>Iniciar Sesión</button></a> -->
     </header>

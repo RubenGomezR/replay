@@ -50,6 +50,7 @@ public class HomeController {
 	@Authorized(roles = {Authorized.ADMIN})
 	public String mostrarA(Model modelo) {
 		modelo.addAttribute("anuncios", sa.findAllAnunciosAjenos()); 
+		modelo.addAttribute("usuario", su.findById(session.getUserLoggedId()).get());
 		//no mostramos los anuncios del usuario cnoectado
 		
 		return "usuAdmin/pagina";

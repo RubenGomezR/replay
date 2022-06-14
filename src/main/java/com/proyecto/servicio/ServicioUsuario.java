@@ -11,10 +11,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
 
+import com.proyecto.modelo.AnuncioVO;
 import com.proyecto.modelo.UsuarioVO;
 
 public interface ServicioUsuario {
-
+	
 	<S extends UsuarioVO> S save(S entity);
 
 	<S extends UsuarioVO> Optional<S> findOne(Example<S> example);

@@ -7,7 +7,8 @@
         <a class="logo" th:href="@{/Home}"> <p>RePlay</p> </a> 
         <nav>
             <ul class="nav">
-            	<li class="cajaBuscador"> <form th:action="@{/anuncios/buscar}" class="formBuscador" 
+            	<li class="cajaBuscador"> 
+            		<form th:action="@{/anuncios/buscar}" class="formBuscador" 
             		th:object="${anuncio}">
                 <input class="textoBuscador" type="search" placeholder="Busca ..." name="query">
                 <button class="botonBuscador" type="submit">
@@ -15,11 +16,9 @@
                         style="font-size: 18px;">
                     </i>
                 </button>
-            </form> </li>
-                <!-- <li><a href="#">Inicio</a></li> -->
-                <!--   <li><a href="#"><i class="fa-solid fa-heart"></i></a></li>
-                <li class="new"><a th:href="@{/anuncios/inserta}">+</a></li> -->
-                <!--  <a th:href="@{/anuncios/inserta}"><li class="new">+</a>  -->
+            	</form> 
+            </li>
+             
             </ul>
         </nav>
         <a class="botonR" th:href="@{/usuarios/inserta}"><button>Registrate</button></a> 

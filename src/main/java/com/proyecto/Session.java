@@ -25,7 +25,7 @@ public class Session {
     private int maxInactiveInterval;
 
     
-     // Contructor.
+     //Contructor
      
     public Session() {
         maxInactiveInterval = 3600;

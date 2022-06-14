@@ -2,13 +2,16 @@
 <html xmlns:th="www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>CRUD Anuncios</title>
+ <link rel="icon" type="image/x-icon" href="/images/IconHome.png">
 <link rel="stylesheet" href="../crud.css">
 <link rel="stylesheet" href="../fontawesome_listo/css/all.css">
+
 </head>
 <body>
 
-	<h1>CRUD Anuncios</h1>
+	<!-- encabezado -->
+	<header th:replace="fragmentos/usuAdmin/frag_header ::header"></header>
 	
 	<div class="contenedor0">
 		<ul class="cruds">
@@ -18,9 +21,12 @@
              </tr>
     	</ul>
 	</div>
+	
+	
+	<h2 class="titulo">CRUD Anuncios</h2>
 
     <div class="contenedor">
-        <a class="insertar" th:href="@{/anuncios/inserta}"> Inserta anuncio</a>
+        <a class="insertar" th:href="@{/anuncios/insertaCrudA}"> Inserta anuncio</a>
 
         <table class="tabla">
             <tr class="titulos">
@@ -29,6 +35,7 @@
                 <th>Estado</th>
                 <th>Categoria</th>
                 <th>Descripcion</th>
+                <th>Url Imagen</th>
                 <th>CRUD</th>
                 <!-- usuario? -->
             </tr>
@@ -37,9 +44,10 @@
                 <td data-label="Precio" th:text="${anuncio.precio}">asdasd</td>
                 <td data-label="estado" th:text="${anuncio.estado}">asdasda</td>
                 <td data-label="Categoria" th:text="${anuncio.categoria}">asdasd</td>
-                <td data-label="Descripcion" th:text="${anuncio.descripcion}">asdasd</td>
+                <td data-label="Descripcion" th:text="${anuncio.descripcion}">asdasd</td> 
+                <td data-label="UrlImg" th:text="${anuncio.urlImg}">asdasd</td>
                 <td class="eliminar"> <a th:href="@{/anuncios/eliminar(idProductos=${anuncio.idProductos})}">Eliminar</a> </td>
-                <td class="modificar"> <a th:href="@{/anuncios/modificar(idProductos=${anuncio.idProductos})}">Modificar</a> </td>
+                <td class="modificar"> <a th:href="@{/anuncios/modificarCrudA(idProductos=${anuncio.idProductos})}">Modificar</a> </td>
             </tr>
         </table>
 

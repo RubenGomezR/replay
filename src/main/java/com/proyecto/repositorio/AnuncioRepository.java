@@ -26,6 +26,10 @@ public interface AnuncioRepository extends JpaRepository<AnuncioVO, Integer> {
 	@Query(value="SELECT * FROM anuncios WHERE anuncios.usuario_id_usuarios = :idUsuario", nativeQuery=true)
 	List<AnuncioVO> findByUsuario(Integer idUsuario);
 	
+	//consulta buscar anuncio por id de usuario
+		@Query(value="SELECT * FROM anuncios WHERE anuncios.usuario_id_usuarios = :idUsuario", nativeQuery=true)
+		List<AnuncioVO> findByIdUsuario(Integer idUsuario);
+	
 	//consulta buscar anuncio que no pertenezca al usuario con id usuario
 	@Query(value="SELECT * FROM anuncios WHERE anuncios.usuario_id_usuarios != :idUsuario", nativeQuery=true)
 	List<AnuncioVO> findAllAnunciosAjenos(Integer idUsuario);

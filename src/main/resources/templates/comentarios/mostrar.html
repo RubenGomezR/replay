@@ -2,27 +2,42 @@
 <html xmlns:th="www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>CRUD Comentarios</title>
+ <link rel="icon" type="image/x-icon" href="/images/IconHome.png">
+<link rel="stylesheet" href="../crud.css">
+<link rel="stylesheet" href="../fontawesome_listo/css/all.css">
 </head>
 <body>
 
-	<h1>CRUD Comentarios</h1>
+	<!-- encabezado -->
+	<header th:replace="fragmentos/usuAdmin/frag_header ::header"></header>
+	
+	<div class="contenedor0">
+		<ul class="cruds">
+                <a th:href="@{/anuncios/}"><li> <i class="fa-solid fa-bullhorn"></i> Anuncios</li></a>
+                <a th:href="@{/usuarios/}"> <li> <i class="fa-solid fa-users"></i> Usuarios</li> </a>
+                <a th:href="@{/comentarios/}"> <li> <i class="fa-solid fa-comments"></i> Comentarios</li></a>
+             </tr>
+    	</ul>
+	</div>
+	
 
-	<table>
-		<tr>
+	<h2 class="titulo">CRUD Comentarios</h2>
+
+<div class="contenedor">
+	<table class="tabla">
+		<tr class="titulos">
 			<th>Fecha</th>
 			<th>Texto</th>
-			<!-- usuario? -->
+			<th>CRUD</th>
 		</tr>
 		<tr th:each="comentario :${comentarios}">
-			<td th:text="${comentario.fecha}"></td>
-			<td th:text="${comentario.texto}"></td>
-			
-			<td> <a th:href="@{/comentarios/eliminar(idComentarios=${comentario.idComentarios})}">Eliminar</a> </td>
-			<td> <a th:href="@{/comentarios/modificar(idComentarios=${comentario.idComentarios})}">Modificar</a> </td>
+			<td data-label="Fecha" th:text="${comentario.fecha}"></td>
+			<td data-label="Texto" th:text="${comentario.texto}"></td>
+			<td class="eliminar"> <a th:href="@{/comentarios/eliminar(idComentarios=${comentario.idComentarios})}">Eliminar</a> </td>
 		</tr>
 	</table>
+	</div>
 	
-	<a th:href="@{/comentarios/inserta}"> Inserta comentario</a>
 </body>
 </html>

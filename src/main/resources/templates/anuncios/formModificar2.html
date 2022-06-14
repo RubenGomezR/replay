@@ -11,11 +11,11 @@
 <body>
 
 	<!-- encabezado -->
-	<header th:replace="fragmentos/usuRegistrado/frag_header ::header"></header>
+	<header th:replace="fragmentos/usuAdmin/frag_header ::header"></header>
     
 
 	
-	<form class="form" th:action="@{/anuncios/persistirR}" method="post" th:object="${anuncio}"  enctype="multipart/form-data">
+	<form class="form" th:action="@{/anuncios/persistirCrudA}" method="post" th:object="${anuncio}"  enctype="multipart/form-data">
 		<h5>MODIFICANDO ANUNCIO</h5>
 		<input class="campos" type="text" name="nombre" placeholder="¿Qué quiere anunciar?"  th:field="*{nombre}">
 		<input class="campos" type="number" name="precio" placeholder="¿A cuanto lo quiere vender?"  th:field="*{precio}">
@@ -25,21 +25,9 @@
     		<option value="Reservado">Reservado</option>
     		<option value="Vendido">Vendido</option>
   		</select>
-		
-		<!-- <input class="campos" autocomplete="off" type="text" list="estados" name="estado" id="estado" placeholder="Cambia el estado del anuncio">
-		<datalist id="estados">
-    		<option value="En venta">
-    		<option value="Reservado">
-    		<option value="Vendido">
-  		</datalist>-->
+
 		<input class="campos" type="text" name="descripcion" placeholder="Añade información sobre tu producto ..." th:field="*{descripcion}">
-<!--		<input class="campos" autocomplete="off" type="text" list="categorias" name="categoria" id="categoria" placeholder="Escoge una categoria" readonly>
-		<datalist id="categorias">
-    		<option value="Videojuegos"> hola </option>
-    		<option value="Consolas">
-    		<option value="PC Gaming">
-    		<option value="Accesorios">
-  		</datalist> -->
+
   		<select class="campos" name="categoria" id="categoria"  placeholder="Escoge una categoria" th:field="*{categoria}">
     		<option value="Videojuegos">Videojuegos</option>
     		<option value="Consolas">Consolas</option>

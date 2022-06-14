@@ -1,27 +1,43 @@
 package com.proyecto.servicioImpl;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
 import javax.transaction.Transactional;
 
+import org.apache.tomcat.util.codec.binary.Base64;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.util.ResourceUtils;
 import org.springframework.util.StringUtils;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.proyecto.Session;
 import com.proyecto.enums.StateEnum;
@@ -51,41 +67,132 @@ public class ServicioAnuncioImpl implements ServicioAnuncio {
 	public <S extends AnuncioVO> S save(S entity, MultipartFile file) {
 		UsuarioVO usuario = su.getById((int) session.get(Session.ID_USER));
 		entity.setUsuario(usuario);
-		entity.setEstado(StateEnum.EN_VENTA.getEstado());
-		String imagen = guardarImagen(file);
-		//si imagen esta vacia ponemos una por defecto
-		if (imagen.isEmpty()) {
-			imagen = "imagenes_anuncio/sinImagen.jpg";
+
+		if (entity.getEstado() == null || entity.getEstado().isEmpty()){ 
+			entity.setEstado(StateEnum.EN_VENTA.getEstado());
+		} 
+	
+		String url  = "";
+		if (!file.isEmpty()) {
+			try {
+				RestTemplate restTemplate = new RestTemplate();
+		
+				MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
+				map.add("key", "6d207e02198a847aa98d0a2a901485a5");
+				map.add("action", "upload");
+				map.add("source", encodeFileToBase64Binary(file));
+		
+				HttpEntity<MultiValueMap<String, String>> body = new HttpEntity<MultiValueMap<String, String>>(map, new HttpHeaders());
+		
+				ResponseEntity<String> response = restTemplate.postForEntity("https://freeimage.host/api/1/upload", body , String.class);
+				
+				//Esto contiene el JSON que me devulve freeimage pero en un String
+				String bodyResponse = response.getBody();
+				
+				//Lo transformo a un JSONObject para poder navegar en el JSON de forma comoda
+				JSONObject jsonObject =  (JSONObject) JSONValue.parse(bodyResponse);
+				
+				//Ahora busco dentro del JSON la url de la imagen
+				url = ((JSONObject) jsonObject.get("image")).get("url").toString();
+			} catch(Exception e) {
+				System.out.println("Algo fue mal en la subida de imagen: " + e.getMessage());
+			}
 		}
-		entity.setUrlImg(imagen);
+		
+		//si imagen esta vacia ponemos una por defecto
+		if (url.isEmpty()) {
+			url = "https://iili.io/hXJIwJ.jpg";
+		}
+		entity.setUrlImg(url);
 		return ar.save(entity);
 	}
 	
-	private String guardarImagen(MultipartFile file) {
-		
-		String nameFile = "";
-		
-        // check if file is empty
-        if (!file.isEmpty()) {
+	private String encodeFileToBase64Binary(MultipartFile multiPartFile) {
+		String base64 = "";
+		try {
+	        InputStream inputStreamReader = multiPartFile.getInputStream();
+	        byte[] bytes = new byte[inputStreamReader.available()];
+	        inputStreamReader.read(bytes);
+	        base64 = new String(Base64.encodeBase64(bytes), "UTF-8");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return base64;
+    }
+	
+//	private String guardarImagen(MultipartFile file) {
+//		
+//		String nameFile = "";
+//		
+//        //Comprobamos que no este vacia
+//        if (!file.isEmpty()) {
+//
+//            // declaramos la ruta del archivo
+//            String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+//            Date fechaActual = new Date();
+//            String nuevoNombre = session.getUserLoggedId() + "_" + String.valueOf(fechaActual.getTime()) + "_" + fileName;
+//            
+//            // Guardamos el archivo
+//            try {
+//            	String ruta ="src/main/resources/static/imagenes_anuncio/";
+//            	//local:  String ruta ="src/main/resources/static/imagenes_anuncio/";
+//                Path path = Paths.get(ruta + nuevoNombre);
+//                Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+//                nameFile = "imagenes_anuncio/" + nuevoNombre;
+//            } catch (IOException e) {
+//                System.out.println(e.getMessage());
+//            }
+//
+//        }
+//
+//        return nameFile;
+//        
+//	}
+	
+    /*UsuarioVO usuario = su.getById((int) session.get(Session.ID_USER));
+	entity.setUsuario(usuario);
 
-            // normalize the file path
-            String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-            Date fechaActual = new Date();
-            String nuevoNombre = session.getUserLoggedId() + "_" + String.valueOf(fechaActual.getTime()) + "_" + fileName;
-            
-            // save the file on the local file system
-            try {
-                Path path = Paths.get("imagenes_anuncio/" + nuevoNombre);
-                Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-                nameFile = "imagenes_anuncio/" + nuevoNombre;
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
+	if (entity.getEstado() == null || entity.getEstado().isEmpty()){ 
+		entity.setEstado(StateEnum.EN_VENTA.getEstado());
+	} 
+	
+	
+	
+	String imagen = guardarImagen(file);
+	//si imagen esta vacia ponemos una por defecto
+	if (imagen.isEmpty()) {
+		imagen = "imagenes_anuncio/sinImagen.jpg";
+	}
+	entity.setUrlImg(imagen);
+	return ar.save(entity);
+}
 
+private String guardarImagen(MultipartFile file) {
+	
+	String nameFile = "";
+	
+    //Comprobamos que no este vacia
+    if (!file.isEmpty()) {
+
+        // declaramos la ruta del archivo
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        Date fechaActual = new Date();
+        String nuevoNombre = session.getUserLoggedId() + "_" + String.valueOf(fechaActual.getTime()) + "_" + fileName;
+        
+        // Guardamos el archivo
+        try {
+        	String ruta ="src/main/resources/static/imagenes_anuncio/";
+        	//local:  String ruta ="src/main/resources/static/imagenes_anuncio/";
+            Path path = Paths.get(ruta + nuevoNombre);
+            Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+            nameFile = "imagenes_anuncio/" + nuevoNombre;
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
 
-        return nameFile;
-	}
+    }
+
+    return nameFile;*/
 	
 
 	@Override
@@ -268,6 +375,12 @@ public class ServicioAnuncioImpl implements ServicioAnuncio {
 	@Override
 	public List<AnuncioVO> findAllLikesR() {
 		return ar.findAllLikesR(session.getUserLoggedId());
+	}
+
+	@Override
+	public List<AnuncioVO> findByIdUsuario(Integer idUsuario) {
+		// TODO Auto-generated method stub
+		return ar.findByIdUsuario(idUsuario);
 	}
 
 	

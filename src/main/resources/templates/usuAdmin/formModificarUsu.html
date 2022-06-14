@@ -11,11 +11,11 @@
 <body>
 
 	<!-- encabezado -->
-	<header th:replace="fragmentos/usuRegistrado/frag_header ::header"></header>
+	<header th:replace="fragmentos/usuAdmin/frag_header ::header"></header>
     
 
 	
-	<form class="form" th:action="@{/usuarios/persistirCrudA}" method="post" th:object="${usuario}">
+	<form class="form" th:action="@{/usuarios/persistirA}" method="post" th:object="${usuario}">
 		<h5>MODIFICANDO USUARIO</h5>
 		<input class="campos" type="text" name="nombre" th:field="*{nombre}">
 		<input class="campos" type="text" name="nombre" th:field="*{correo}">

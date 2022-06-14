@@ -1,0 +1,31 @@
+<head>
+<meta charset="UTF-8">
+</head>
+
+<header th:fragment="header">
+        <a th:href="@{/Home/A}"> <img class="logo" src="/images/IconHome.png" alt="logo"> </a>    
+        <a class="logo" th:href="@{/Home/A}"> <p>RePlay</p> </a> 
+        <nav>
+            <ul class="nav">
+            	<li class="cajaBuscador"> <form th:action="@{/anuncios/buscarA}" class="formBuscador" 
+            		th:object="${anuncio}">
+                <input class="textoBuscador" type="search" placeholder="Busca ..." name="query">
+                <button class="botonBuscador" type="submit">
+                    <i class="fa fa-search"
+                        style="font-size: 18px;">
+                    </i>
+                </button>
+            </form> </li>
+                <!-- <li><a href="#">Inicio</a></li> -->
+                <li><a th:href="@{/anuncios/paginaLikesA}" title="Mis Likes"><i class="fa-solid fa-heart"></i></a></li>
+                <li class="new"><a th:href="@{/anuncios/insertaA}" title="Crear Anuncio">+</a></li> 
+                <li><a th:href="@{/usuarios/perfilA}" title="Ver Perfil"><i class="fa-solid fa-circle-user"></i> </a></li>
+                <li><p th:text="${usuario.nombre}"></p></li>
+                
+                <li><a th:href="@{/usuarios/logout}"><i class="fa-solid fa-arrow-right-from-bracket" title="Cerrar Sesión"></i></a></li>
+                <!--  <a th:href="@{/anuncios/inserta}"><li class="new">+</a>  -->
+            </ul>
+        </nav>
+        <!--  <a class="botonR" th:href="@{/usuarios/inserta}"><button>Registrate</button></a> 
+        <a class="botonR" ><button>Iniciar Sesión</button></a> -->
+    </header>

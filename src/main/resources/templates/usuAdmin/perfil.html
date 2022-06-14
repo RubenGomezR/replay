@@ -9,20 +9,20 @@
 </head>
 <body>
 	<!-- encabezado -->
-	<header th:replace="fragmentos/usuRegistrado/frag_header ::header"></header>
+	<header th:replace="fragmentos/usuAdmin/frag_header ::header"></header>
     
     
-    <h2 class="titulo">Mi Perfil</h2>
+    <h2 class="titulo">Mi Perfil - Admin</h2>
 
 	<article>
 	  <div class="container">
         <div class="card">
             <div class="card-header">
-               <a th:href="@{/usuarios/modificarUsuR(idUsuarios=${usuario.idUsuarios})}"><i class="fa-solid fa-gear"></i></a>
+               <a th:href="@{/usuarios/modificarUsuA(idUsuarios=${usuario.idUsuarios})}"><i class="fa-solid fa-gear"></i></a>
+               <a th:href="@{/anuncios/}"><i class="fa-solid fa-hammer"></i></a>
                
             </div>
             <div class="card-bodyU">
-                <!--   <span class="precio" th:text="${anuncio.precio}"></span> -->
                 <img src="/images/UserIcon.png" width="80px" height="80px" alt="user" />
                     <div><h4>Nombre: </h4>   <span th:text="${usuario.nombre}"></span> 
                     	<h4>Correo: </h4>   <span th:text="${usuario.correo}"></span></div>
@@ -43,16 +43,15 @@
     <article>
      <div class="container">
         <div class="cardP" th:each="anuncio :${anuncios}">
-        <a th:href="@{/anuncios/seleccionarR(idProductos=${anuncio.idProductos})}">
+        <a th:href="@{/anuncios/seleccionarA(idProductos=${anuncio.idProductos})}">
             <div class="card-headerP">
-                <img th:src="@{${anuncio.urlImg}}" alt="rover" />
+                <img th:src="@{${ '/' + anuncio.urlImg}}" alt="rover" />
             </div>
             <div class="card-body2">
             	<div class="encabezado">
                 	<span class="precio" th:text="${anuncio.precio}"></span>
-                	<!--  <a th:href="@{/anuncios/inserta}"><i class="fa-solid fa-heart"></i></a> -->
-                	<a th:href="@{/anuncios/modificarR(idProductos=${anuncio.idProductos})}"><i class="fa-solid fa-gear"></i></a>
-                	<a th:href="@{/anuncios/eliminarR(idProductos=${anuncio.idProductos})}"><i class="fa-solid fa-xmark"></i></a>
+                	<a th:href="@{/anuncios/modificarA(idProductos=${anuncio.idProductos})}"><i class="fa-solid fa-gear"></i></a>
+                	<a th:href="@{/anuncios/eliminarA(idProductos=${anuncio.idProductos})}"><i class="fa-solid fa-xmark"></i></a>
                 	
                 	
                 </div>
@@ -60,15 +59,6 @@
                 <p th:text="${anuncio.categoria}"></p>
                 <p th:text="${anuncio.estado}"></p>
                 <p th:text="${anuncio.descripcion}"></p>
-                <!--  <a th:href="@{/anuncios/seleccionar(idProductos=${anuncio.idProductos})}">Ver Producto</a> -->
-                <!--  
-                <div class="user">
-                    <img src="https://yt3.ggpht.com/a/AGF-l7-0J1G0Ue0mcZMw-99kMeVuBmRxiPjyvIYONg=s900-c-k-c0xffffffff-no-rj-mo" alt="user" />
-                    <div class="user-info">
-                        <h5>July Dec</h5>
-                        <small>2h ago</small>
-                    </div>
-                </div> -->
             </div>
             </a>
         </div>
