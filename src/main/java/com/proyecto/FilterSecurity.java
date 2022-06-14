@@ -40,7 +40,7 @@ public class FilterSecurity implements Filter  {
 	
 	private boolean checkPermissionsUri(HttpServletRequest httpServletRequest) {
 		//permisos otorgados a usuario anonimo (sin rol)
-		return httpServletRequest.getRequestURI().equals("/Home") || httpServletRequest.getRequestURI().equals("/usuarios/accede") ||
+		return httpServletRequest.getRequestURI().equals("") || httpServletRequest.getRequestURI().equals("/") || httpServletRequest.getRequestURI().equals("/Home") || httpServletRequest.getRequestURI().equals("/usuarios/accede") ||
 				httpServletRequest.getRequestURI().equals("/usuarios/login") || httpServletRequest.getRequestURI().equals("/usuarios/persistir")
 				|| httpServletRequest.getRequestURI().endsWith(".css") 
 				 || httpServletRequest.getRequestURI().endsWith(".png")  || httpServletRequest.getRequestURI().endsWith(".jpg")
