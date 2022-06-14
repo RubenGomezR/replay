@@ -83,7 +83,7 @@ public class UsuarioController {
 	@RequestMapping("/accede")
 	public String accede(@RequestParam String correo, String contrasena, Model modelo) {
 		
-		String redirect = "usuarios/login";
+		String redirect = "redirect:/usuarios/login";
 		
 		if (!su.login(correo, contrasena)) {
 			modelo.addAttribute("Error", "403");
